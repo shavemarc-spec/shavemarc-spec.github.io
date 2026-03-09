@@ -383,6 +383,46 @@ footer {
   .hero-name { font-size: 2.8rem; }
   .disciplines-grid { grid-template-columns: 1fr 1fr; }
 }
+
+  /* SHARED HEADER + FOOTER */
+header { position:sticky; top:0; z-index:300; background:var(--white); border-bottom:1px solid var(--border); }
+nav { max-width:1100px; margin:0 auto; height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; }
+.nav-logo { font-size:.95rem; font-weight:600; letter-spacing:-.01em; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:9px; flex-shrink:0; }
+.nav-logo-mark { width:28px; height:28px; border-radius:7px; background:var(--blue); display:flex; align-items:center; justify-content:center; color:white; font-size:.75rem; font-weight:700; }
+.nav-links { display:flex; align-items:center; gap:2px; list-style:none; }
+.nav-links a { display:block; padding:7px 13px; border-radius:7px; font-size:.83rem; font-weight:500; color:var(--text2); text-decoration:none; transition:background .18s,color .18s; white-space:nowrap; }
+.nav-links a:hover { background:var(--off); color:var(--text); }
+.nav-links a.active { color:var(--blue); background:var(--blue-lt); }
+.nav-burger { display:none; flex-direction:column; justify-content:center; align-items:center; width:38px; height:38px; border-radius:8px; border:1px solid var(--border); background:transparent; cursor:pointer; gap:5px; flex-shrink:0; transition:background .18s; }
+.nav-burger:hover { background:var(--off); }
+.nav-burger span { display:block; width:16px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .26s, opacity .18s, width .18s; transform-origin:center; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; width:0; }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-overlay { display:none; position:fixed; inset:0; z-index:200; background:var(--white); flex-direction:column; padding-top:60px; }
+.nav-overlay.open { display:flex; }
+.nav-overlay-inner { display:flex; flex-direction:column; padding:20px 20px 32px; flex:1; overflow-y:auto; }
+.nav-overlay-links { list-style:none; display:flex; flex-direction:column; gap:3px; }
+.nav-overlay-links a { display:flex; align-items:center; justify-content:space-between; padding:15px 16px; border-radius:10px; font-size:.95rem; font-weight:500; color:var(--text); text-decoration:none; border:1px solid transparent; transition:background .18s, border-color .18s; }
+.nav-overlay-links a:hover { background:var(--off); border-color:var(--border); }
+.nav-overlay-links a.active { background:var(--blue-lt); border-color:var(--blue-mid); color:var(--blue); font-weight:600; }
+.nav-overlay-links a .ov-arrow { font-size:.72rem; color:var(--text3); }
+.nav-overlay-links a.active .ov-arrow { color:var(--blue); }
+footer { border-top:1px solid var(--border); background:var(--white); }
+.footer-inner { max-width:1100px; margin:0 auto; padding:28px 32px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+.footer-logo { font-size:.88rem; font-weight:600; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+.footer-logo-mark { width:24px; height:24px; border-radius:6px; background:var(--blue); display:flex; align-items:center; justify-content:center; color:white; font-size:.65rem; font-weight:700; }
+.footer-nav { display:flex; align-items:center; gap:4px; flex-wrap:wrap; }
+.footer-nav a { font-size:.78rem; color:var(--text3); text-decoration:none; padding:4px 10px; border-radius:6px; transition:color .18s, background .18s; }
+.footer-nav a:hover { color:var(--blue); background:var(--blue-lt); }
+.footer-copy { font-size:.72rem; color:var(--text3); }
+@media (max-width:820px) {
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .nav-burger { display:flex; }
+  .footer-inner { padding:24px 20px; flex-direction:column; align-items:flex-start; gap:14px; }
+  .footer-nav { gap:2px; }
+}
 </style>
 </head>
 <body>
@@ -398,10 +438,26 @@ footer {
       <li><a href="/about">About</a></li>
       <li><a href="/seekive">Seekive</a></li>
       <li><a href="/video">Video</a></li>
-      <li><a href="/ai-creative">AI & Creative</a></li>
-      <li><a href="/contact" class="nav-contact">Contact</a></li>
+      <li><a href="/ai-creative">AI &amp; Creative</a></li>
+      <li><a href="/skills">Skills</a></li>
+      <li><a href="/contact">Contact</a></li>
     </ul>
+    <button class="nav-burger" id="burger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="nav-overlay" id="nav-overlay">
+    <div class="nav-overlay-inner">
+      <ul class="nav-overlay-links">
+        <li><a href="/about">About<span class="ov-arrow">→</span></a></li>
+        <li><a href="/seekive">Seekive<span class="ov-arrow">→</span></a></li>
+        <li><a href="/video">Video<span class="ov-arrow">→</span></a></li>
+        <li><a href="/ai-creative">AI &amp; Creative<span class="ov-arrow">→</span></a></li>
+        <li><a href="/skills">Skills<span class="ov-arrow">→</span></a></li>
+        <li><a href="/contact">Contact<span class="ov-arrow">→</span></a></li>
+      </ul>
+    </div>
+  </div>
 </header>
 
 <!-- ── HERO ── -->
@@ -601,7 +657,7 @@ footer {
 <footer>
   <div class="footer-inner">
     <a href="/" class="footer-logo">
-      <div class="nav-logo-mark" style="width:24px;height:24px;font-size:.68rem;">MS</div>
+      <div class="footer-logo-mark">MS</div>
       Marc Shave
     </a>
     <nav class="footer-nav">
@@ -609,6 +665,7 @@ footer {
       <a href="/seekive">Seekive</a>
       <a href="/video">Video</a>
       <a href="/ai-creative">AI &amp; Creative</a>
+      <a href="/skills">Skills</a>
       <a href="/contact">Contact</a>
     </nav>
     <div class="footer-contact">
@@ -626,6 +683,25 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+  <script>
+(function(){
+  var burger = document.getElementById('burger');
+  var overlay = document.getElementById('nav-overlay');
+  if (!burger || !overlay) return;
+  burger.addEventListener('click', function() {
+    var open = overlay.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      overlay.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
 </script>
 </body>
 </html>
