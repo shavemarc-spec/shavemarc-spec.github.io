@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Skills & Education — Marc Shave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+:root {
+  --white:#ffffff; --off:#f7f8fa; --border:#e2e6ed; --border2:#ccd4e0;
+  --text:#0f1923; --text2:#4a5568; --text3:#8896a8;
+  --blue:#1c5bd6; --blue-dk:#1448b0; --blue-lt:#eef3fd; --blue-mid:#d0dff9;
+}
+body { background:var(--white); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+/* ── NAV ── */
+header { position:sticky; top:0; z-index:200; background:var(--white); border-bottom:1px solid var(--border); }
+nav { max-width:1100px; margin:0 auto; height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; }
+.nav-logo { font-size:.95rem; font-weight:600; letter-spacing:-.01em; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:9px; }
+.nav-logo-mark { width:28px; height:28px; border-radius:7px; background:var(--blue); display:flex; align-items:center; justify-content:center; color:white; font-size:.75rem; font-weight:700; }
+.nav-links { display:flex; align-items:center; gap:2px; list-style:none; }
+.nav-links a { display:block; padding:7px 14px; border-radius:7px; font-size:.83rem; font-weight:500; color:var(--text2); text-decoration:none; transition:background .18s,color .18s; }
+.nav-links a:hover { background:var(--off); color:var(--text); }
+.nav-links a.active { color:var(--blue); background:var(--blue-lt); }
+.nav-contact { background:var(--blue)!important; color:white!important; font-weight:600!important; }
+.nav-contact:hover { background:var(--blue-dk)!important; color:white!important; }
+
+/* ── PAGE HEADER ── */
+.page-header { border-bottom:1px solid var(--border); }
+.page-header-inner { max-width:1100px; margin:0 auto; padding:56px 32px 48px; }
+.breadcrumb { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:.75rem; color:var(--text3); }
+.breadcrumb a { color:var(--text3); text-decoration:none; transition:color .18s; }
+.breadcrumb a:hover { color:var(--blue); }
+.breadcrumb-sep { color:var(--border2); }
+.page-type { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.page-type::before { content:''; display:block; width:20px; height:2px; background:var(--blue); border-radius:2px; }
+.page-title { font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:400; letter-spacing:-.025em; line-height:1.05; color:var(--text); margin-bottom:16px; }
+.page-title em { font-style:italic; color:var(--blue); }
+.page-desc { font-size:1rem; color:var(--text2); max-width:640px; line-height:1.75; }
+.page-desc strong { color:var(--text); font-weight:500; }
+
+/* ── JUMP NAV ── */
+.jump-bar { background:var(--off); border-bottom:1px solid var(--border); }
+.jump-bar-inner { max-width:1100px; margin:0 auto; padding:0 32px; display:flex; gap:0; flex-wrap:wrap; }
+.jump-link { display:block; padding:13px 20px 13px 0; margin-right:20px; font-size:.78rem; font-weight:600; color:var(--text3); text-decoration:none; border-bottom:2px solid transparent; transition:color .18s, border-color .18s; white-space:nowrap; }
+.jump-link:hover { color:var(--blue); border-bottom-color:var(--blue); }
+
+/* ── SECTIONS ── */
+.page-section { max-width:1100px; margin:0 auto; padding:56px 32px; border-bottom:1px solid var(--border); }
+.page-section:last-of-type { border-bottom:none; }
+.section-label { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); margin-bottom:8px; }
+.section-heading { font-family:'Fraunces',serif; font-size:1.6rem; font-weight:400; letter-spacing:-.02em; color:var(--text); margin-bottom:6px; }
+.section-heading em { font-style:italic; color:var(--blue); }
+.section-sub { font-size:.85rem; color:var(--text3); margin-bottom:32px; line-height:1.6; max-width:640px; }
+
+/* ── EDUCATION CARDS ── */
+.edu-card {
+  background:var(--off); border:1px solid var(--border); border-radius:14px;
+  overflow:hidden; margin-bottom:16px; transition:border-color .22s;
+}
+.edu-card:hover { border-color:var(--blue-mid); }
+.edu-card::before { content:''; display:block; height:3px; background:linear-gradient(90deg, var(--blue), var(--blue-mid)); }
+
+.edu-card-summary {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:28px 28px; cursor:pointer; user-select:none; gap:20px;
+  list-style:none;
+}
+.edu-card-summary::-webkit-details-marker { display:none; }
+.edu-summary-left { flex:1; }
+.edu-school { font-size:.68rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--blue); margin-bottom:6px; }
+.edu-qual { font-size:1rem; font-weight:700; letter-spacing:-.01em; color:var(--text); margin-bottom:3px; line-height:1.25; }
+.edu-subject { font-size:.88rem; color:var(--text2); }
+.edu-summary-right { display:flex; align-items:center; gap:16px; flex-shrink:0; }
+.edu-grade-badge { display:flex; align-items:center; gap:6px; background:var(--white); border:1px solid var(--blue-mid); border-radius:8px; padding:6px 14px; }
+.edu-grade-label { font-size:.6rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--blue); }
+.edu-grade-val { font-size:.9rem; font-weight:800; color:var(--text); }
+.edu-dates { font-size:.72rem; color:var(--text3); white-space:nowrap; }
+.edu-toggle { width:28px; height:28px; border-radius:7px; background:var(--white); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .18s, transform .25s; font-size:.7rem; color:var(--text3); }
+details[open] .edu-toggle { background:var(--blue-lt); border-color:var(--blue-mid); color:var(--blue); transform:rotate(45deg); }
+
+/* UNIT TABLE */
+.edu-units { border-top:1px solid var(--border); padding:0 28px 24px; }
+.units-intro { font-size:.75rem; color:var(--text3); padding:16px 0 14px; border-bottom:1px solid var(--border); margin-bottom:4px; }
+.unit-row { display:grid; grid-template-columns:1fr auto; align-items:center; padding:9px 0; border-bottom:1px solid var(--border); gap:16px; }
+.unit-row:last-child { border-bottom:none; }
+.unit-name { font-size:.8rem; color:var(--text2); font-weight:400; }
+.unit-grade { font-size:.72rem; font-weight:700; letter-spacing:.04em; padding:3px 10px; border-radius:5px; white-space:nowrap; }
+.grade-d { background:linear-gradient(135deg, var(--blue-lt), #e0ebff); border:1px solid var(--blue-mid); color:var(--blue); }
+.grade-m { background:#f0fdf4; border:1px solid #bbf7d0; color:#16a34a; }
+.grade-p { background:#fefce8; border:1px solid #fef08a; color:#ca8a04; }
+
+/* ── SKILLS GRID ── */
+.skills-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+.skill-group { background:var(--off); border:1px solid var(--border); border-radius:12px; padding:26px 22px; transition:border-color .22s; }
+.skill-group:hover { border-color:var(--blue-mid); }
+.skill-group-head { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid var(--border); }
+.skill-group-icon { width:36px; height:36px; border-radius:9px; background:var(--white); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0; }
+.skill-group-name { font-size:.85rem; font-weight:700; color:var(--text); line-height:1.25; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; }
+.chip { font-size:.7rem; font-weight:500; padding:5px 11px; border-radius:6px; background:var(--white); border:1px solid var(--border); color:var(--text2); transition:all .18s; cursor:default; }
+.chip:hover { border-color:var(--blue-mid); color:var(--blue); background:var(--blue-lt); }
+.chip.hi { background:var(--blue-lt); border-color:var(--blue-mid); color:var(--blue); font-weight:600; }
+
+/* ── CERTIFICATIONS ── */
+.certs-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.cert-card { display:flex; align-items:flex-start; gap:16px; background:var(--off); border:1px solid var(--border); border-radius:12px; padding:22px; text-decoration:none; color:inherit; transition:border-color .22s, transform .22s; }
+.cert-card:hover { border-color:var(--blue); transform:translateY(-2px); box-shadow:0 4px 16px rgba(28,91,214,.08); }
+.cert-logo { width:42px; height:42px; border-radius:10px; background:var(--white); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.cert-title { font-size:.88rem; font-weight:700; color:var(--text); margin-bottom:3px; letter-spacing:-.01em; line-height:1.3; }
+.cert-issuer { font-size:.7rem; font-weight:600; color:var(--blue); margin-bottom:5px; }
+.cert-meta { font-size:.66rem; color:var(--text3); margin-bottom:8px; }
+.cert-verify { display:inline-flex; align-items:center; gap:4px; font-size:.65rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); transition:gap .18s; }
+.cert-card:hover .cert-verify { gap:8px; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
+.reveal.d1 { transition-delay:.08s; } .reveal.d2 { transition-delay:.16s; } .reveal.d3 { transition-delay:.24s; }
+.reveal.in { opacity:1; transform:none; }
+
+/* ── FOOTER ── */
+footer { border-top:1px solid var(--border); background:var(--white); }
+.footer-inner { max-width:1100px; margin:0 auto; padding:36px 32px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.footer-logo { font-size:.9rem; font-weight:600; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+.footer-nav { display:flex; gap:20px; }
+.footer-nav a { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-nav a:hover { color:var(--blue); }
+.footer-right { display:flex; align-items:center; gap:16px; }
+.footer-email { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-email:hover { color:var(--blue); }
+.footer-copy { font-size:.7rem; color:var(--text3); }
+
+/* ── RESPONSIVE ── */
+@media (max-width:960px) {
+  nav { padding:0 20px; }
+  .nav-links li:nth-child(n+3):not(:last-child) { display:none; }
+  .page-header-inner { padding:40px 20px 36px; }
+  .jump-bar-inner { padding:0 20px; }
+  .page-section { padding:40px 20px; }
+  .edu-card-summary { flex-wrap:wrap; gap:14px; }
+  .edu-summary-right { flex-wrap:wrap; }
+  .skills-grid { grid-template-columns:1fr 1fr; }
+  .certs-grid { grid-template-columns:1fr; }
+  .footer-inner { flex-direction:column; align-items:flex-start; padding:28px 20px; }
+}
+@media (max-width:600px) {
+  .skills-grid { grid-template-columns:1fr; }
+  .edu-summary-right { flex-direction:column; align-items:flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">MS</div>Marc Shave</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="seekive.html">Seekive</a></li>
+      <li><a href="video.html">Video</a></li>
+      <li><a href="skills.html" class="active">Skills</a></li>
+      <li><a href="contact.html" class="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Skills &amp; Education</span>
+    </div>
+    <div class="page-type">Skills &amp; Education</div>
+    <h1 class="page-title">Qualifications, Skills<br>&amp; <em>Credentials</em></h1>
+    <p class="page-desc">
+      A full overview of my formal education, professional skills, and verified certifications. I achieved a <strong>D*D*D* Triple Distinction</strong> in Creative Media Production and a <strong>D* Distinction</strong> in IT — both from Strode College — alongside four Google and Google Cloud certifications. Expand any qualification below to see the individual units and grades.
+    </p>
+  </div>
+</div>
+
+<div class="jump-bar">
+  <div class="jump-bar-inner">
+    <a href="#education" class="jump-link">Education</a>
+    <a href="#skills" class="jump-link">Skills</a>
+    <a href="#certifications" class="jump-link">Certifications</a>
+  </div>
+</div>
+
+<!-- ═══ EDUCATION ═══ -->
+<div id="education" class="page-section reveal">
+  <div class="section-label">Education</div>
+  <h2 class="section-heading">Academic <em>Background</em></h2>
+  <p class="section-sub">Formal qualifications from Strode College — expand each to see the individual units studied and the grade achieved in each.</p>
+
+  <!-- BTEC EXTENDED DIPLOMA -->
+  <details class="edu-card">
+    <summary class="edu-card-summary">
+      <div class="edu-summary-left">
+        <div class="edu-school">Strode College · Pearson BTEC</div>
+        <div class="edu-qual">BTEC Level 3 Extended Diploma</div>
+        <div class="edu-subject">Creative Media Production</div>
+      </div>
+      <div class="edu-summary-right">
+        <span class="edu-dates">Sep 2018 – Jul 2020</span>
+        <div class="edu-grade-badge">
+          <span class="edu-grade-label">Grade</span>
+          <span class="edu-grade-val">D*D*D*</span>
+        </div>
+        <div class="edu-toggle">+</div>
+      </div>
+    </summary>
+    <div class="edu-units">
+      <div class="units-intro">19 units completed — awarded Triple Distinction*, July 2020</div>
+      <div class="unit-row"><span class="unit-name">Pre-Production Techniques for the Creative Media Industries</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Communication Skills for Creative Media Production</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Research Techniques for the Creative Media Industries</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Understanding the Creative Media Sector</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Film and Video Editing Techniques</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Single Camera Techniques</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Social Action and Community Media Production</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Music-Based Programming</span><span class="unit-grade grade-m">Merit</span></div>
+      <div class="unit-row"><span class="unit-name">Web Authoring</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Web Animation for Interactive Media</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Creative Media Production Management Project</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Working to a Brief in the Creative Media Industries</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Critical Approaches to Creative Media Products</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Multi-Camera Techniques</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Music Video Production</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">2D Animation Production</span><span class="unit-grade grade-m">Merit</span></div>
+      <div class="unit-row"><span class="unit-name">Soundtrack Production for the Moving Image</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Motion Graphics and Compositing Video</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Sound for Computer Games</span><span class="unit-grade grade-m">Merit</span></div>
+    </div>
+  </details>
+
+  <!-- BTEC SUBSIDIARY DIPLOMA IT -->
+  <details class="edu-card">
+    <summary class="edu-card-summary">
+      <div class="edu-summary-left">
+        <div class="edu-school">Strode College · Pearson BTEC</div>
+        <div class="edu-qual">BTEC Level 3 Subsidiary Diploma</div>
+        <div class="edu-subject">Information Technology</div>
+      </div>
+      <div class="edu-summary-right">
+        <span class="edu-dates">Sep 2017 – Jul 2018</span>
+        <div class="edu-grade-badge">
+          <span class="edu-grade-label">Grade</span>
+          <span class="edu-grade-val">D*</span>
+        </div>
+        <div class="edu-toggle">+</div>
+      </div>
+    </summary>
+    <div class="edu-units">
+      <div class="units-intro">9 units completed — awarded Distinction*, July 2018</div>
+      <div class="unit-row"><span class="unit-name">Communication and Employability Skills for IT</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Computer Systems</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Information Systems</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Software Design and Development</span><span class="unit-grade grade-m">Merit</span></div>
+      <div class="unit-row"><span class="unit-name">Computer Networks</span><span class="unit-grade grade-p">Pass</span></div>
+      <div class="unit-row"><span class="unit-name">Database Design</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Client Side Customisation of Web Pages</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Web Server Scripting</span><span class="unit-grade grade-d">Distinction</span></div>
+      <div class="unit-row"><span class="unit-name">Computer Animation</span><span class="unit-grade grade-d">Distinction</span></div>
+    </div>
+  </details>
+</div>
+
+<!-- ═══ SKILLS ═══ -->
+<div id="skills" class="page-section reveal">
+  <div class="section-label">Skills &amp; Tools</div>
+  <h2 class="section-heading">Full <em>Skill Set</em></h2>
+  <p class="section-sub">Every tool, technology and discipline I work with across development, creative production, AI, marketing and design.</p>
+
+  <div class="skills-grid">
+
+    <div class="skill-group reveal">
+      <div class="skill-group-head">
+        <div class="skill-group-icon">📱</div>
+        <div class="skill-group-name">App &amp; Web Development</div>
+      </div>
+      <div class="chips">
+        <span class="chip hi">React Native</span>
+        <span class="chip hi">Firebase</span>
+        <span class="chip hi">Firestore</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">HTML &amp; CSS</span>
+        <span class="chip">AdMob</span>
+        <span class="chip">iOS &amp; Android</span>
+        <span class="chip">REST APIs</span>
+        <span class="chip">Git / GitHub</span>
+        <span class="chip">Authentication</span>
+        <span class="chip">Database Design</span>
+        <span class="chip">Web Server Scripting</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal d1">
+      <div class="skill-group-head">
+        <div class="skill-group-icon">🎨</div>
+        <div class="skill-group-name">Adobe Creative Suite</div>
+      </div>
+      <div class="chips">
+        <span class="chip hi">Premiere Pro</span>
+        <span class="chip hi">Photoshop</span>
+        <span class="chip">After Effects</span>
+        <span class="chip">Illustrator</span>
+        <span class="chip">Lightroom</span>
+        <span class="chip">InDesign</span>
+        <span class="chip">Media Encoder</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal d2">
+      <div class="skill-group-head">
+        <div class="skill-group-icon">🤖</div>
+        <div class="skill-group-name">AI &amp; Generative Tools</div>
+      </div>
+      <div class="chips">
+        <span class="chip hi">Prompt Engineering</span>
+        <span class="chip hi">Google Gemini API</span>
+        <span class="chip hi">AI Image Generation</span>
+        <span class="chip">Generative AI Workflows</span>
+        <span class="chip">@google/genai SDK</span>
+        <span class="chip">AI Research &amp; Planning</span>
+        <span class="chip">AI-Assisted Editing</span>
+        <span class="chip">AI Drafting &amp; Scripting</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-head">
+        <div class="skill-group-icon">🎬</div>
+        <div class="skill-group-name">Video &amp; Media Production</div>
+      </div>
+      <div class="chips">
+        <span class="chip hi">Video Editing</span>
+        <span class="chip hi">Film &amp; Video Techniques</span>
+        <span class="chip hi">Narrative Storytelling</span>
+        <span class="chip">Colour Grading</span>
+        <span class="chip">Motion Graphics</span>
+        <span class="chip">Multi-Camera Production</span>
+        <span class="chip">Music Video Production</span>
+        <span class="chip">Single Camera Techniques</span>
+        <span class="chip">Audio Editing &amp; Mixing</span>
+        <span class="chip">Soundtrack Production</span>
+        <span class="chip">Short-form Content</span>
+        <span class="chip">2D Animation</span>
+        <span class="chip">Compositing</span>
+        <span class="chip">Pre-Production Planning</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal d1">
+      <div class="skill-group-head">
+        <div class="skill-group-icon">📣</div>
+        <div class="skill-group-name">Digital Marketing &amp; Social Media</div>
+      </div>
+      <div class="chips">
+        <span class="chip hi">Social Media Strategy</span>
+        <span class="chip hi">Content Creation</span>
+        <span class="chip">Audience Building</span>
+        <span class="chip">E-commerce Foundations</span>
+        <span class="chip">Campaign Planning</span>
+        <span class="chip">Brand Identity</span>
+        <span class="chip">Analytics</span>
+        <span class="chip">Community Management</span>
+        <span class="chip">App Marketing</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal d2">
+      <div class="skill-group-head">
+        <div class="skill-group-icon">✦</div>
+        <div class="skill-group-name">Product &amp; UX Design</div>
+      </div>
+      <div class="chips">
+        <span class="chip hi">UX Design Principles</span>
+        <span class="chip hi">Mobile UI Design</span>
+        <span class="chip">User Research</span>
+        <span class="chip">Wireframing</span>
+        <span class="chip">Prototyping</span>
+        <span class="chip">Design Systems</span>
+        <span class="chip">Figma</span>
+        <span class="chip">Web Animation</span>
+        <span class="chip">Accessibility</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ CERTIFICATIONS ═══ -->
+<div id="certifications" class="page-section reveal">
+  <div class="section-label">Certifications</div>
+  <h2 class="section-heading">Courses &amp; <em>Credentials</em></h2>
+  <p class="section-sub">Verified certifications issued via Coursera — click any card to verify the credential directly.</p>
+
+  <div class="certs-grid">
+    <a href="https://www.coursera.org/account/accomplishments/verify/GXWQPNCDAVHQ" target="_blank" class="cert-card reveal">
+      <div class="cert-logo">☁️</div>
+      <div>
+        <div class="cert-title">Introduction to Generative AI</div>
+        <div class="cert-issuer">Google Cloud</div>
+        <div class="cert-meta">Issued Mar 2024 · Credential ID: GXWQPNCDAVHQ</div>
+        <div class="cert-verify">Verify credential ↗</div>
+      </div>
+    </a>
+    <a href="https://www.coursera.org/account/accomplishments/verify/HVSWZHSH7LS2" target="_blank" class="cert-card reveal d1">
+      <div class="cert-logo">🖼️</div>
+      <div>
+        <div class="cert-title">Introduction to Image Generation</div>
+        <div class="cert-issuer">Google Cloud</div>
+        <div class="cert-meta">Issued Apr 2024 · Credential ID: HVSWZHSH7LS2</div>
+        <div class="cert-verify">Verify credential ↗</div>
+      </div>
+    </a>
+    <a href="https://www.coursera.org/account/accomplishments/verify/HM9DMWUNCRL8" target="_blank" class="cert-card reveal">
+      <div class="cert-logo">📊</div>
+      <div>
+        <div class="cert-title">Foundations of Digital Marketing &amp; E-commerce</div>
+        <div class="cert-issuer">Google</div>
+        <div class="cert-meta">Issued Apr 2024 · Credential ID: HM9DMWUNCRL8</div>
+        <div class="cert-verify">Verify credential ↗</div>
+      </div>
+    </a>
+    <a href="https://www.coursera.org/account/accomplishments/verify/EZWWAKER9MXP" target="_blank" class="cert-card reveal d1">
+      <div class="cert-logo">🎯</div>
+      <div>
+        <div class="cert-title">Foundations of User Experience (UX) Design</div>
+        <div class="cert-issuer">Google</div>
+        <div class="cert-meta">Issued Apr 2024 · Credential ID: EZWWAKER9MXP</div>
+        <div class="cert-verify">Verify credential ↗</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><div class="nav-logo-mark" style="width:24px;height:24px;font-size:.68rem;">MS</div>Marc Shave</a>
+    <nav class="footer-nav">
+      <a href="about.html">About</a>
+      <a href="seekive.html">Seekive</a>
+      <a href="video.html">Video</a>
+      <a href="skills.html">Skills</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-right">
+      <a href="mailto:hello@marcshave.com" class="footer-email">hello@marcshave.com</a>
+      <span class="footer-copy">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
