@@ -189,6 +189,20 @@ footer { border-top:1px solid var(--border); background:var(--white); }
   .nav-burger { display:flex; }
   .footer-inner { padding:24px 20px; flex-direction:column; align-items:flex-start; gap:14px; }
   .footer-nav { gap:2px; }
+  .nav-overlay-close {
+  display:flex; align-items:center; justify-content:center;
+  width:40px; height:40px; border-radius:8px;
+  border:1px solid var(--border); background:var(--off);
+  cursor:pointer; margin-bottom:20px; flex-shrink:0;
+  position:relative;
+}
+.nav-overlay-close span {
+  display:block; width:16px; height:1.5px;
+  background:var(--text); border-radius:2px;
+  position:absolute;
+}
+.nav-overlay-close span:nth-child(1) { transform:rotate(45deg); }
+.nav-overlay-close span:nth-child(2) { transform:rotate(-45deg); }
 }
 </style>
 </head>
@@ -214,7 +228,10 @@ footer { border-top:1px solid var(--border); background:var(--white); }
   </nav>
   <div class="nav-overlay" id="nav-overlay">
     <div class="nav-overlay-inner">
-      <ul class="nav-overlay-links">
+  <button class="nav-overlay-close" id="nav-close" aria-label="Close menu">
+    <span></span><span></span>
+  </button>
+  <ul class="nav-overlay-links">
         <li><a href="/about">About<span class="ov-arrow">→</span></a></li>
         <li><a href="/seekive">Seekive<span class="ov-arrow">→</span></a></li>
         <li><a href="/video">Video<span class="ov-arrow">→</span></a></li>
@@ -520,25 +537,32 @@ footer { border-top:1px solid var(--border); background:var(--white); }
 <script>
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold:.08 });
+}, { threshold:.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
-  <script>
+
+<script>
 (function(){
-  var burger = document.getElementById('burger');
+  var burger  = document.getElementById('burger');
   var overlay = document.getElementById('nav-overlay');
+  var closer  = document.getElementById('nav-close');
   if (!burger || !overlay) return;
+  function openMenu() {
+    overlay.classList.add('open');
+    burger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    overlay.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
   burger.addEventListener('click', function() {
-    var open = overlay.classList.toggle('open');
-    burger.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+    overlay.classList.contains('open') ? closeMenu() : openMenu();
   });
+  if (closer) closer.addEventListener('click', closeMenu);
   overlay.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      overlay.classList.remove('open');
-      burger.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+    a.addEventListener('click', closeMenu);
   });
 })();
 </script>
