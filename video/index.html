@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Video Portfolio — Marc Shave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+:root {
+  --white:#ffffff; --off:#f7f8fa; --border:#e2e6ed; --border2:#ccd4e0;
+  --text:#0f1923; --text2:#4a5568; --text3:#8896a8;
+  --blue:#1c5bd6; --blue-dk:#1448b0; --blue-lt:#eef3fd; --blue-mid:#d0dff9;
+}
+body { background:var(--white); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+/* NAV */
+header { position:sticky; top:0; z-index:200; background:var(--white); border-bottom:1px solid var(--border); }
+nav { max-width:1100px; margin:0 auto; height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; }
+.nav-logo { font-size:.95rem; font-weight:600; letter-spacing:-.01em; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:9px; }
+.nav-logo-mark { width:28px; height:28px; border-radius:7px; background:var(--blue); display:flex; align-items:center; justify-content:center; color:white; font-size:.75rem; font-weight:700; }
+.nav-links { display:flex; align-items:center; gap:2px; list-style:none; }
+.nav-links a { display:block; padding:7px 14px; border-radius:7px; font-size:.83rem; font-weight:500; color:var(--text2); text-decoration:none; transition:background .18s,color .18s; }
+.nav-links a:hover { background:var(--off); color:var(--text); }
+.nav-links a.active { color:var(--blue); background:var(--blue-lt); }
+.nav-contact { background:var(--blue)!important; color:white!important; font-weight:600!important; }
+.nav-contact:hover { background:var(--blue-dk)!important; color:white!important; }
+
+/* PAGE HEADER */
+.page-header { border-bottom:1px solid var(--border); }
+.page-header-inner { max-width:1100px; margin:0 auto; padding:56px 32px 48px; }
+.breadcrumb { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:.75rem; color:var(--text3); }
+.breadcrumb a { color:var(--text3); text-decoration:none; transition:color .18s; }
+.breadcrumb a:hover { color:var(--blue); }
+.breadcrumb-sep { color:var(--border2); }
+.page-type { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.page-type::before { content:''; display:block; width:20px; height:2px; background:var(--blue); border-radius:2px; }
+.page-title { font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:400; letter-spacing:-.025em; line-height:1.05; color:var(--text); margin-bottom:16px; }
+.page-title em { font-style:italic; color:var(--blue); }
+.page-desc { font-size:1rem; color:var(--text2); max-width:640px; line-height:1.75; }
+
+/* META BAR */
+.meta-bar { background:var(--off); border-bottom:1px solid var(--border); }
+.meta-bar-inner { max-width:1100px; margin:0 auto; padding:0 32px; display:flex; gap:0; flex-wrap:wrap; }
+.meta-item { padding:18px 28px 18px 0; margin-right:28px; border-right:1px solid var(--border); }
+.meta-item:last-child { border-right:none; }
+.meta-label { font-size:.62rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--text3); margin-bottom:3px; }
+.meta-val { font-size:.83rem; font-weight:600; color:var(--text); }
+
+/* SOFTWARE BADGE */
+.software-strip { background:var(--blue-lt); border-bottom:1px solid var(--blue-mid); }
+.software-strip-inner { max-width:1100px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.software-label { font-size:.7rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--blue); }
+.software-badges { display:flex; gap:8px; flex-wrap:wrap; }
+.software-badge { display:flex; align-items:center; gap:7px; background:var(--white); border:1px solid var(--blue-mid); border-radius:7px; padding:6px 13px; font-size:.75rem; font-weight:600; color:var(--text); }
+.software-badge-icon { font-size:.9rem; }
+
+/* SECTIONS */
+.page-section { max-width:1100px; margin:0 auto; padding:60px 32px; border-bottom:1px solid var(--border); }
+.section-heading { font-family:'Fraunces',serif; font-size:1.5rem; font-weight:400; letter-spacing:-.02em; color:var(--text); margin-bottom:6px; }
+.section-heading em { font-style:italic; color:var(--blue); }
+.section-sub { font-size:.85rem; color:var(--text3); margin-bottom:32px; line-height:1.6; max-width:600px; }
+
+/* VIDEO CARD */
+.video-card {
+  background:var(--white); border:1px solid var(--border); border-radius:14px;
+  overflow:hidden; transition:border-color .22s, box-shadow .22s, transform .22s;
+}
+.video-card:hover { border-color:var(--blue); box-shadow:0 4px 20px rgba(28,91,214,.1); transform:translateY(-2px); }
+
+.video-thumb {
+  background:var(--off); border-bottom:1px solid var(--border);
+  aspect-ratio:16/9; position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:10px;
+}
+.video-thumb iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
+.video-thumb video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.video-thumb-placeholder { display:flex; flex-direction:column; align-items:center; gap:10px; }
+.video-thumb-icon { font-size:2.2rem; opacity:.3; }
+.video-thumb-hint { font-size:.72rem; color:var(--text3); font-weight:500; }
+.video-play-btn {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:rgba(15,25,35,.45); opacity:0; transition:opacity .2s; cursor:pointer;
+}
+.video-card:hover .video-play-btn { opacity:1; }
+.play-circle {
+  width:52px; height:52px; border-radius:50%; background:white;
+  display:flex; align-items:center; justify-content:center; font-size:1.2rem;
+}
+
+.video-body { padding:22px 22px 24px; }
+.video-type { font-size:.62rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--blue); margin-bottom:7px; display:flex; align-items:center; gap:6px; }
+.video-name { font-size:1rem; font-weight:600; letter-spacing:-.01em; color:var(--text); margin-bottom:8px; }
+.video-desc { font-size:.8rem; color:var(--text2); line-height:1.6; margin-bottom:16px; }
+.video-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.video-tag { font-size:.62rem; font-weight:500; padding:3px 9px; border-radius:5px; background:var(--off); border:1px solid var(--border); color:var(--text3); }
+.video-tag.blue { background:var(--blue-lt); border-color:var(--blue-mid); color:var(--blue); font-weight:600; }
+
+/* GRIDS */
+.video-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.video-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+.video-grid-1 { display:grid; grid-template-columns:1fr; gap:20px; }
+
+/* TECHNIQUE STRIP */
+.technique-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-top:32px; }
+.technique-item { background:var(--white); padding:24px 20px; transition:background .2s; }
+.technique-item:hover { background:var(--blue-lt); }
+.technique-icon { font-size:1.1rem; margin-bottom:10px; }
+.technique-name { font-size:.82rem; font-weight:600; color:var(--text); margin-bottom:4px; }
+.technique-note { font-size:.72rem; color:var(--text3); line-height:1.4; }
+
+/* AI BADGE */
+.ai-callout {
+  background:var(--blue-lt); border:1px solid var(--blue-mid); border-radius:12px;
+  padding:20px 24px; display:flex; align-items:flex-start; gap:14px; margin-top:32px;
+}
+.ai-callout-icon { font-size:1.2rem; flex-shrink:0; }
+.ai-callout-text { font-size:.82rem; color:var(--text2); line-height:1.65; }
+.ai-callout-text strong { color:var(--text); }
+
+/* FOOTER */
+footer { border-top:1px solid var(--border); background:var(--white); }
+.footer-inner { max-width:1100px; margin:0 auto; padding:36px 32px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.footer-logo { font-size:.9rem; font-weight:600; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+.footer-nav { display:flex; gap:20px; }
+.footer-nav a { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-nav a:hover { color:var(--blue); }
+.footer-email { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-email:hover { color:var(--blue); }
+.footer-copy { font-size:.7rem; color:var(--text3); }
+
+/* REVEAL */
+.reveal { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
+.reveal.d1 { transition-delay:.08s; } .reveal.d2 { transition-delay:.16s; } .reveal.d3 { transition-delay:.24s; }
+.reveal.in { opacity:1; transform:none; }
+
+@media (max-width:900px) {
+  nav { padding:0 20px; } .nav-links li:nth-child(-n+3) { display:none; }
+  .page-header-inner, .software-strip-inner { padding-left:20px; padding-right:20px; }
+  .meta-bar-inner { padding:0 20px; }
+  .page-section { padding:40px 20px; }
+  .video-grid-2, .video-grid-3 { grid-template-columns:1fr; }
+  .technique-grid { grid-template-columns:1fr 1fr; }
+  .footer-inner { flex-direction:column; align-items:flex-start; padding:28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">MS</div>Marc Shave</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="seekive.html">Seekive</a></li>
+      <li><a href="video.html" class="active">Video</a></li>
+      <li><a href="ai-creative.html">AI &amp; Creative</a></li>
+      <li><a href="contact.html" class="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Video</span>
+    </div>
+    <div class="page-type">Video &amp; Film</div>
+    <h1 class="page-title">Video Editing <em>Portfolio</em></h1>
+    <p class="page-desc">A collection of video work spanning narrative storytelling, creative productions, and AI-assisted projects. My editing practice is grounded in a D*D*D* qualification in Creative Media Production and hands-on work in Adobe Premiere Pro — from earlier productions built on traditional craft, to newer work that integrates AI as part of the creative process.</p>
+  </div>
+</div>
+
+<!-- SOFTWARE STRIP -->
+<div class="software-strip">
+  <div class="software-strip-inner">
+    <div class="software-label">Primary Software</div>
+    <div class="software-badges">
+      <div class="software-badge"><div class="software-badge-icon">🎬</div>Adobe Premiere Pro</div>
+      <div class="software-badge"><div class="software-badge-icon">✨</div>After Effects</div>
+      <div class="software-badge"><div class="software-badge-icon">🎨</div>Adobe Photoshop</div>
+      <div class="software-badge"><div class="software-badge-icon">🔊</div>Audio Editing</div>
+      <div class="software-badge"><div class="software-badge-icon">🤖</div>AI-Assisted Workflows</div>
+    </div>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-bar-inner">
+    <div class="meta-item"><div class="meta-label">Education</div><div class="meta-val">D*D*D* — Creative Media Production, Strode College</div></div>
+    <div class="meta-item"><div class="meta-label">Primary Tool</div><div class="meta-val">Adobe Premiere Pro</div></div>
+    <div class="meta-item"><div class="meta-label">Output</div><div class="meta-val">Narrative · Short-form · Social · AI-Assisted</div></div>
+  </div>
+</div>
+
+<!-- FEATURED / SHOWREEL -->
+<div class="page-section reveal">
+  <h2 class="section-heading">Showreel</h2>
+  <p class="section-sub">A curated reel of editing work across projects — paste a YouTube or Vimeo embed link below to activate</p>
+  <div style="background:var(--off);border:2px dashed var(--border2);border-radius:14px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden;">
+    <!-- TO ADD: <iframe src="https://www.youtube.com/embed/YOUR_SHOWREEL_ID" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:12px;"></iframe> -->
+    <div style="font-size:3rem;opacity:.2;">🎬</div>
+    <div style="font-size:.82rem;font-weight:600;color:var(--text3);">Showreel — paste embed here</div>
+    <div style="font-size:.7rem;color:var(--border2);">YouTube or Vimeo iframe embed</div>
+  </div>
+</div>
+
+<!-- TRADITIONAL EDITING WORK -->
+<div class="page-section reveal">
+  <h2 class="section-heading">Editing Work — <em>Premiere Pro</em></h2>
+  <p class="section-sub">Productions built on traditional editing craft — demonstrating timeline work, colour grading, cuts, pacing, and audio mixing in Adobe Premiere Pro. These pieces showcase core skills built through creative media study and ongoing practice.</p>
+
+  <div class="video-grid-2" style="margin-bottom:20px;">
+    <div class="video-card">
+      <div class="video-thumb">
+        <!-- <iframe src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe> -->
+        <div class="video-thumb-placeholder">
+          <div class="video-thumb-icon">▶</div>
+          <div class="video-thumb-hint">Paste YouTube / Vimeo embed</div>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-type">🎬 Premiere Pro</div>
+        <div class="video-name">Project Title</div>
+        <p class="video-desc">Short description of this video project — what it was, who it was for, and the editing techniques used.</p>
+        <div class="video-tags">
+          <span class="video-tag blue">Premiere Pro</span>
+          <span class="video-tag">Colour Grade</span>
+          <span class="video-tag">Narrative</span>
+        </div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb">
+        <div class="video-thumb-placeholder">
+          <div class="video-thumb-icon">▶</div>
+          <div class="video-thumb-hint">Paste YouTube / Vimeo embed</div>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-type">🎬 Premiere Pro</div>
+        <div class="video-name">Project Title</div>
+        <p class="video-desc">Short description of this video project — what it was, who it was for, and the editing techniques used.</p>
+        <div class="video-tags">
+          <span class="video-tag blue">Premiere Pro</span>
+          <span class="video-tag">Short-form</span>
+          <span class="video-tag">Audio Mix</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-grid-3">
+    <div class="video-card">
+      <div class="video-thumb">
+        <div class="video-thumb-placeholder">
+          <div class="video-thumb-icon">▶</div>
+          <div class="video-thumb-hint">Embed video</div>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-type">🎬 Premiere Pro</div>
+        <div class="video-name">Project Title</div>
+        <p class="video-desc">Description of this project and techniques.</p>
+        <div class="video-tags"><span class="video-tag blue">Premiere Pro</span></div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb">
+        <div class="video-thumb-placeholder">
+          <div class="video-thumb-icon">▶</div>
+          <div class="video-thumb-hint">Embed video</div>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-type">🎬 Premiere Pro</div>
+        <div class="video-name">Project Title</div>
+        <p class="video-desc">Description of this project and techniques.</p>
+        <div class="video-tags"><span class="video-tag blue">Premiere Pro</span></div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb">
+        <div class="video-thumb-placeholder">
+          <div class="video-thumb-icon">▶</div>
+          <div class="video-thumb-hint">Embed video</div>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-type">🎬 Premiere Pro</div>
+        <div class="video-name">Project Title</div>
+        <p class="video-desc">Description of this project and techniques.</p>
+        <div class="video-tags"><span class="video-tag blue">Premiere Pro</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI-ASSISTED VIDEO WORK -->
+<div class="page-section reveal">
+  <h2 class="section-heading">AI-Assisted <em>Productions</em></h2>
+  <p class="section-sub">Newer work where AI has been used as part of the creative and production process — from using prompts to research, script, and plan, through to generating visual assets and enhancing the edit.</p>
+
+  <div class="video-grid-2">
+    <div class="video-card">
+      <div class="video-thumb">
+        <div class="video-thumb-placeholder">
+          <div class="video-thumb-icon">▶</div>
+          <div class="video-thumb-hint">Paste YouTube / Vimeo embed</div>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-type">🤖 AI-Assisted · 🎬 Premiere Pro</div>
+        <div class="video-name">Project Title</div>
+        <p class="video-desc">Description of how AI was used in the production of this piece — research, scripting, visual generation, or editing assistance.</p>
+        <div class="video-tags">
+          <span class="video-tag blue">AI-Assisted</span>
+          <span class="video-tag blue">Premiere Pro</span>
+          <span class="video-tag">Prompting</span>
+        </div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb">
+        <div class="video-thumb-placeholder">
+          <div class="video-thumb-icon">▶</div>
+          <div class="video-thumb-hint">Paste YouTube / Vimeo embed</div>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-type">🤖 AI-Assisted · 🎬 Premiere Pro</div>
+        <div class="video-name">Project Title</div>
+        <p class="video-desc">Description of how AI was used in the production of this piece — research, scripting, visual generation, or editing assistance.</p>
+        <div class="video-tags">
+          <span class="video-tag blue">AI-Assisted</span>
+          <span class="video-tag blue">Premiere Pro</span>
+          <span class="video-tag">Generative Assets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ai-callout">
+    <div class="ai-callout-icon">🤖</div>
+    <div class="ai-callout-text">
+      <strong>How AI fits into my video workflow:</strong> I use AI through prompting at every stage of production — researching topics, planning structure, drafting scripts and shot lists, generating visual ideas, and refining edits. This sits alongside traditional Premiere Pro craft, not in place of it. The older work shown above was produced without AI, demonstrating core editing skill built from the ground up.
+    </div>
+  </div>
+</div>
+
+<!-- TECHNIQUES -->
+<div class="page-section reveal">
+  <h2 class="section-heading">Editing <em>Techniques</em></h2>
+  <p class="section-sub">Capabilities applied across projects</p>
+  <div class="technique-grid">
+    <div class="technique-item">
+      <div class="technique-icon">✂️</div>
+      <div class="technique-name">Timeline Editing</div>
+      <div class="technique-note">Multi-track assembly, pacing, and rhythm in Premiere Pro</div>
+    </div>
+    <div class="technique-item">
+      <div class="technique-icon">🎨</div>
+      <div class="technique-name">Colour Grading</div>
+      <div class="technique-note">Lumetri Colour, LUT application, tone and mood</div>
+    </div>
+    <div class="technique-item">
+      <div class="technique-icon">🔊</div>
+      <div class="technique-name">Audio Mixing</div>
+      <div class="technique-note">Levels, EQ, music selection and sync</div>
+    </div>
+    <div class="technique-item">
+      <div class="technique-icon">✨</div>
+      <div class="technique-name">Motion Graphics</div>
+      <div class="technique-note">Titles, transitions, and effects via After Effects</div>
+    </div>
+    <div class="technique-item">
+      <div class="technique-icon">📲</div>
+      <div class="technique-name">Multi-platform Export</div>
+      <div class="technique-note">Optimised output for social, web, and broadcast</div>
+    </div>
+    <div class="technique-item">
+      <div class="technique-icon">📖</div>
+      <div class="technique-name">Narrative Structure</div>
+      <div class="technique-note">Storytelling, pacing, and audience engagement</div>
+    </div>
+    <div class="technique-item">
+      <div class="technique-icon">🤖</div>
+      <div class="technique-name">AI Integration</div>
+      <div class="technique-note">Prompt-driven research, scripting, and asset generation</div>
+    </div>
+    <div class="technique-item">
+      <div class="technique-icon">🎬</div>
+      <div class="technique-name">Short-form Content</div>
+      <div class="technique-note">Reels, shorts, and platform-native video formats</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><div class="nav-logo-mark" style="width:24px;height:24px;font-size:.68rem;">MS</div>Marc Shave</a>
+    <nav class="footer-nav">
+      <a href="about.html">About</a><a href="seekive.html">Seekive</a><a href="video.html">Video</a><a href="ai-creative.html">AI &amp; Creative</a><a href="contact.html">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="mailto:hello@marcshave.com" class="footer-email">hello@marcshave.com</a>
+      <span class="footer-copy">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
