@@ -1,14 +1,631 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marc Shave | Portfolio</title>
-  <meta name="description" content="Portfolio website for Marc Shave">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Marc Shave — Creative Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* ── TOKENS ── */
+:root {
+  --white:   #ffffff;
+  --off:     #f7f8fa;
+  --border:  #e2e6ed;
+  --border2: #ccd4e0;
+  --text:    #0f1923;
+  --text2:   #4a5568;
+  --text3:   #8896a8;
+  --blue:    #1c5bd6;
+  --blue-dk: #1448b0;
+  --blue-lt: #eef3fd;
+  --blue-mid:#d0dff9;
+}
+
+body {
+  background: var(--white);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+header {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+nav {
+  max-width: 1100px; margin: 0 auto;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+}
+.nav-logo {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .95rem; font-weight: 600; letter-spacing: -.01em;
+  color: var(--text); text-decoration: none;
+  display: flex; align-items: center; gap: 9px;
+}
+.nav-logo-mark {
+  width: 28px; height: 28px; border-radius: 7px;
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: .75rem; font-weight: 700;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 2px;
+  list-style: none;
+}
+.nav-links a {
+  display: block; padding: 7px 14px; border-radius: 7px;
+  font-size: .83rem; font-weight: 500; letter-spacing: -.01em;
+  color: var(--text2); text-decoration: none;
+  transition: background .18s, color .18s;
+}
+.nav-links a:hover { background: var(--off); color: var(--text); }
+.nav-links a.active { color: var(--blue); }
+.nav-contact {
+  background: var(--blue) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  transition: background .18s !important;
+}
+.nav-contact:hover { background: var(--blue-dk) !important; color: white !important; }
+
+/* ── HERO ── */
+.hero {
+  max-width: 1100px; margin: 0 auto;
+  padding: 80px 32px 72px;
+  display: grid; grid-template-columns: 1fr 320px;
+  gap: 80px; align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.hero-eyebrow-line { width: 28px; height: 2px; background: var(--blue); border-radius: 2px; }
+.hero-eyebrow span {
+  font-size: .72rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--blue);
+}
+
+.hero-name {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -.02em;
+  color: var(--text); margin-bottom: 22px;
+}
+.hero-name em { font-style: italic; color: var(--blue); }
+
+.hero-bio {
+  font-size: 1rem; color: var(--text2);
+  max-width: 520px; line-height: 1.75; margin-bottom: 36px;
+}
+.hero-bio strong { color: var(--text); font-weight: 500; }
+
+.hero-links {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.btn {
+  display: inline-block; text-decoration: none;
+  font-size: .82rem; font-weight: 600; letter-spacing: -.01em;
+  padding: 10px 22px; border-radius: 8px;
+  transition: background .18s, color .18s, border-color .18s;
+}
+.btn-primary { background: var(--blue); color: white; border: 1.5px solid var(--blue); }
+.btn-primary:hover { background: var(--blue-dk); border-color: var(--blue-dk); }
+.btn-secondary { background: var(--white); color: var(--text); border: 1.5px solid var(--border2); }
+.btn-secondary:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); }
+
+/* HERO ASIDE */
+.hero-aside {}
+.hero-status {
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 24px;
+  margin-bottom: 16px;
+}
+.status-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.status-row:first-child { padding-top: 0; }
+.status-row:last-child { border-bottom: none; padding-bottom: 0; }
+.status-key { font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text3); }
+.status-val { font-size: .82rem; font-weight: 500; color: var(--text); text-align: right; }
+.status-val.blue { color: var(--blue); }
+.status-val.green { color: #16a34a; }
+
+.hero-award {
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-radius: 10px; padding: 14px 18px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.award-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.award-text { font-size: .75rem; line-height: 1.5; color: #92400e; font-weight: 500; }
+.award-text strong { color: #78350f; }
+
+/* ── DISCIPLINES ── */
+.disciplines {
+  border-bottom: 1px solid var(--border);
+  background: var(--off);
+}
+.disciplines-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 52px 32px;
+}
+.disciplines-label {
+  font-size: .7rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text3); margin-bottom: 28px;
+}
+.disciplines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.disc-item {
+  background: var(--white);
+  padding: 28px 24px;
+  transition: background .2s;
+}
+.disc-item:hover { background: var(--blue-lt); }
+.disc-icon { font-size: 1.3rem; margin-bottom: 12px; }
+.disc-name { font-size: .88rem; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+.disc-note { font-size: .75rem; color: var(--text3); line-height: 1.5; }
+
+/* ── WORK GRID ── */
+.work-section {
+  max-width: 1100px; margin: 0 auto;
+  padding: 64px 32px;
+  border-bottom: 1px solid var(--border);
+}
+.section-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 36px;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem; font-weight: 400;
+  letter-spacing: -.02em; color: var(--text);
+}
+.section-title em { font-style: italic; color: var(--blue); }
+.section-more {
+  font-size: .78rem; font-weight: 600; color: var(--blue);
+  text-decoration: none; display: flex; align-items: center; gap: 5px;
+  transition: gap .2s;
+}
+.section-more:hover { gap: 9px; }
+
+.work-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+.work-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
+  transition: border-color .22s, box-shadow .22s, transform .22s;
+}
+.work-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 4px 20px rgba(28,91,214,.1);
+  transform: translateY(-3px);
+}
+.work-card-thumb {
+  height: 160px;
+  background: var(--blue-lt);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.work-card-thumb.amber { background: #fffbeb; }
+.work-card-thumb.teal  { background: #f0fdfb; }
+.work-card-thumb.purple { background: #faf5ff; }
+.work-card-thumb::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(255,255,255,.6) 100%);
+}
+.work-card-body { padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; }
+.work-card-type {
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 7px;
+}
+.work-card-name {
+  font-size: 1rem; font-weight: 600; letter-spacing: -.01em;
+  color: var(--text); margin-bottom: 8px;
+}
+.work-card-desc { font-size: .8rem; color: var(--text2); line-height: 1.6; flex: 1; margin-bottom: 18px; }
+.work-card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.work-card-tag {
+  font-size: .62rem; font-weight: 500;
+  padding: 3px 9px; border-radius: 5px;
+  background: var(--off); border: 1px solid var(--border);
+  color: var(--text3);
+}
+
+/* SEEKIVE FEATURED */
+.work-featured {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  text-decoration: none; color: inherit;
+  display: grid; grid-template-columns: 1fr 260px;
+  margin-bottom: 20px;
+  transition: border-color .22s, box-shadow .22s, transform .22s;
+}
+.work-featured:hover {
+  border-color: var(--blue);
+  box-shadow: 0 4px 20px rgba(28,91,214,.1);
+  transform: translateY(-2px);
+}
+.work-featured-body { padding: 36px 36px; }
+.work-featured-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #fffbeb; border: 1px solid #fcd34d;
+  border-radius: 6px; padding: 4px 10px;
+  font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #92400e; margin-bottom: 14px;
+}
+.work-featured-name {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem; font-weight: 400; letter-spacing: -.02em;
+  color: var(--text); margin-bottom: 6px;
+}
+.work-featured-sub {
+  font-size: .83rem; font-style: italic; font-family: 'Fraunces', serif;
+  color: var(--text3); margin-bottom: 14px;
+}
+.work-featured-desc {
+  font-size: .85rem; color: var(--text2);
+  line-height: 1.7; max-width: 420px; margin-bottom: 22px;
+}
+.work-featured-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 22px; }
+.work-featured-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .8rem; font-weight: 600; color: var(--blue);
+  text-decoration: none; transition: gap .2s;
+}
+.work-featured-link:hover { gap: 10px; }
+.work-featured-thumb {
+  background: var(--blue-lt);
+  border-left: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem;
+}
+
+/* ── CREDENTIALS STRIP ── */
+.credentials {
+  background: var(--off);
+  border-bottom: 1px solid var(--border);
+}
+.credentials-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 40px 32px;
+  display: flex; align-items: center; gap: 48px; flex-wrap: wrap;
+}
+.cred-divider { width: 1px; height: 36px; background: var(--border); flex-shrink: 0; }
+.cred-item { display: flex; align-items: center; gap: 12px; }
+.cred-icon {
+  width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0;
+  background: var(--white); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem;
+}
+.cred-label { font-size: .65rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--text3); }
+.cred-val { font-size: .83rem; font-weight: 600; color: var(--text); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 36px 32px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 24px; flex-wrap: wrap;
+}
+.footer-logo {
+  font-size: .9rem; font-weight: 600; color: var(--text);
+  text-decoration: none; display: flex; align-items: center; gap: 8px;
+}
+.footer-nav { display: flex; gap: 20px; }
+.footer-nav a {
+  font-size: .78rem; color: var(--text3); text-decoration: none;
+  transition: color .18s;
+}
+.footer-nav a:hover { color: var(--blue); }
+.footer-contact {
+  display: flex; align-items: center; gap: 20px;
+}
+.footer-email {
+  font-size: .78rem; color: var(--text3);
+  text-decoration: none; transition: color .18s;
+  display: flex; align-items: center; gap: 6px;
+}
+.footer-email:hover { color: var(--blue); }
+.footer-copy { font-size: .7rem; color: var(--text3); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.d1 { transition-delay: .08s; }
+.reveal.d2 { transition-delay: .16s; }
+.reveal.d3 { transition-delay: .24s; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 0 20px; }
+  .nav-links li:nth-child(-n+3) { display: none; }
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 52px 20px 52px; }
+  .hero-aside { display: none; }
+  .disciplines-inner { padding: 40px 20px; }
+  .disciplines-grid { grid-template-columns: 1fr 1fr; }
+  .work-section { padding: 48px 20px; }
+  .work-featured { grid-template-columns: 1fr; }
+  .work-featured-thumb { display: none; }
+  .work-grid { grid-template-columns: 1fr 1fr; }
+  .credentials-inner { padding: 28px 20px; gap: 24px; }
+  .cred-divider { display: none; }
+  .footer-inner { flex-direction: column; align-items: flex-start; padding: 28px 20px; }
+}
+@media (max-width: 600px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .hero-name { font-size: 2.8rem; }
+  .disciplines-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
 </head>
-<body style="font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px;">
-  <h1>Marc Shave</h1>
-  <p>Welcome to my portfolio website.</p>
-  <p>This site is hosted with GitHub Pages and connected to marcshave.com.</p>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">MS</div>
+      Marc Shave
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="seekive.html">Seekive</a></li>
+      <li><a href="video.html">Video</a></li>
+      <li><a href="ai-creative.html">AI & Creative</a></li>
+      <li><a href="contact.html" class="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ── HERO ── -->
+<section>
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Creative Developer &amp; Builder</span>
+      </div>
+      <h1 class="hero-name">
+        Marc<br><em>Shave.</em>
+      </h1>
+      <p class="hero-bio">
+        I build <strong>apps</strong>, craft <strong>video</strong>, and create <strong>AI-powered work</strong> across digital media. Combining technical development, visual storytelling, and generative AI to make things that matter.
+      </p>
+      <div class="hero-links">
+        <a href="#work" class="btn btn-primary">View Portfolio</a>
+        <a href="about.html" class="btn btn-secondary">About Me</a>
+      </div>
+    </div>
+
+    <div class="hero-aside">
+      <div class="hero-status">
+        <div class="status-row">
+          <span class="status-key">Status</span>
+          <span class="status-val green">● Open to opportunities</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">Flagship App</span>
+          <span class="status-val blue">Seekive</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">Education</span>
+          <span class="status-val">D*D*D* — Strode College</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">Google Certs</span>
+          <span class="status-val">4 Completed</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">Stack</span>
+          <span class="status-val">RN · Firebase · Adobe · AI</span>
+        </div>
+      </div>
+      <div class="hero-award">
+        <div class="award-icon">🏆</div>
+        <div class="award-text">
+          <strong>SMEnews UK Enterprise Awards 2026</strong><br>
+          Shortlisted — Seekive
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DISCIPLINES ── -->
+<div class="disciplines">
+  <div class="disciplines-inner">
+    <div class="disciplines-label">Disciplines</div>
+    <div class="disciplines-grid">
+      <div class="disc-item">
+        <div class="disc-icon">📱</div>
+        <div class="disc-name">App Development</div>
+        <div class="disc-note">React Native, Firebase, AI integration</div>
+      </div>
+      <div class="disc-item">
+        <div class="disc-icon">🎬</div>
+        <div class="disc-name">Video Editing</div>
+        <div class="disc-note">Adobe Premiere Pro, motion & storytelling</div>
+      </div>
+      <div class="disc-item">
+        <div class="disc-icon">🤖</div>
+        <div class="disc-name">AI Creative</div>
+        <div class="disc-note">Image generation, Gemini API, generative workflows</div>
+      </div>
+      <div class="disc-item">
+        <div class="disc-icon">📣</div>
+        <div class="disc-name">Digital Marketing</div>
+        <div class="disc-note">Social media, content strategy, e-commerce</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WORK ── -->
+<section id="work" class="work-section">
+  <div class="section-header reveal">
+    <h2 class="section-title">Selected <em>Work</em></h2>
+    <a href="about.html" class="section-more">Full CV → About</a>
+  </div>
+
+  <!-- Seekive Featured -->
+  <a href="seekive.html" class="work-featured reveal">
+    <div class="work-featured-body">
+      <div class="work-featured-badge">🏆 SMEnews UK Enterprise Awards 2026 — Shortlisted</div>
+      <div class="work-featured-name">Seekive</div>
+      <div class="work-featured-sub">AI-Powered Discovery App</div>
+      <p class="work-featured-desc">A full-stack mobile app helping people discover personalised activities and experiences. Built end-to-end in React Native with Firebase, Google Gemini AI, and AI-generated imagery.</p>
+      <div class="work-featured-tags">
+        <span class="work-card-tag">React Native</span>
+        <span class="work-card-tag">Firebase</span>
+        <span class="work-card-tag">Gemini AI</span>
+        <span class="work-card-tag">AI Image Generation</span>
+        <span class="work-card-tag">iOS & Android</span>
+      </div>
+      <div class="work-featured-link">
+        View project
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="work-featured-thumb">⊕</div>
+  </a>
+
+  <!-- Cards Row -->
+  <div class="work-grid">
+    <a href="video.html" class="work-card reveal">
+      <div class="work-card-thumb">🎬</div>
+      <div class="work-card-body">
+        <div class="work-card-type">Video &amp; Film</div>
+        <div class="work-card-name">Video Editing Portfolio</div>
+        <p class="work-card-desc">A showcase of work in Adobe Premiere Pro — from narrative short-form projects to AI-assisted productions. Rooted in a D*D*D* in Creative Media Production.</p>
+        <div class="work-card-tags">
+          <span class="work-card-tag">Premiere Pro</span>
+          <span class="work-card-tag">Storytelling</span>
+          <span class="work-card-tag">AI-Assisted</span>
+        </div>
+      </div>
+    </a>
+    <a href="ai-creative.html" class="work-card reveal d1">
+      <div class="work-card-thumb teal">✦</div>
+      <div class="work-card-body">
+        <div class="work-card-type">AI &amp; Creative</div>
+        <div class="work-card-name">AI Creative Projects</div>
+        <p class="work-card-desc">Generative image work, AI-assisted design, and creative workflows built on Google Cloud AI tools — including assets created for Seekive.</p>
+        <div class="work-card-tags">
+          <span class="work-card-tag">Image Generation</span>
+          <span class="work-card-tag">Gemini API</span>
+          <span class="work-card-tag">Google Cloud</span>
+        </div>
+      </div>
+    </a>
+    <a href="about.html#skills" class="work-card reveal d2">
+      <div class="work-card-thumb purple">🛠</div>
+      <div class="work-card-body">
+        <div class="work-card-type">Skills &amp; Tools</div>
+        <div class="work-card-name">Full Skill Set</div>
+        <p class="work-card-desc">Adobe Creative Suite, React Native, Firebase, AI tools, digital marketing, UX design and more — with 4 Google certifications and a BTEC background in creative media.</p>
+        <div class="work-card-tags">
+          <span class="work-card-tag">Adobe Suite</span>
+          <span class="work-card-tag">React Native</span>
+          <span class="work-card-tag">Marketing</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── CREDENTIALS STRIP ── -->
+<div class="credentials">
+  <div class="credentials-inner">
+    <div class="cred-item">
+      <div class="cred-icon">🎓</div>
+      <div>
+        <div class="cred-label">Education</div>
+        <div class="cred-val">D*D*D* — Creative Media, Strode College</div>
+      </div>
+    </div>
+    <div class="cred-divider"></div>
+    <div class="cred-item">
+      <div class="cred-icon">🏆</div>
+      <div>
+        <div class="cred-label">Award</div>
+        <div class="cred-val">SMEnews UK Enterprise Awards 2026 — Shortlisted</div>
+      </div>
+    </div>
+    <div class="cred-divider"></div>
+    <div class="cred-item">
+      <div class="cred-icon">📜</div>
+      <div>
+        <div class="cred-label">Certifications</div>
+        <div class="cred-val">4 Google / Google Cloud Credentials</div>
+      </div>
+    </div>
+    <div class="cred-divider"></div>
+    <div class="cred-item">
+      <div class="cred-icon">🌐</div>
+      <div>
+        <div class="cred-label">Live Product</div>
+        <div class="cred-val"><a href="https://seekive.com" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">seekive.com</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">
+      <div class="nav-logo-mark" style="width:24px;height:24px;font-size:.68rem;">MS</div>
+      Marc Shave
+    </a>
+    <nav class="footer-nav">
+      <a href="about.html">About</a>
+      <a href="seekive.html">Seekive</a>
+      <a href="video.html">Video</a>
+      <a href="ai-creative.html">AI &amp; Creative</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="mailto:hello@marcshave.com" class="footer-email">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x=".5" y="2.5" width="12" height="8" rx="1.5" stroke="currentColor" stroke-width="1.1"/><path d="M.5 4l6 4 6-4" stroke="currentColor" stroke-width="1.1"/></svg>
+        hello@marcshave.com
+      </a>
+      <span class="footer-copy">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
