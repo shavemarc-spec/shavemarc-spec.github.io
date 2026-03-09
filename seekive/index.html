@@ -188,6 +188,50 @@ footer { border-top:1px solid var(--border); background:var(--white); }
 .nav-overlay-close span:nth-child(1) { transform:rotate(45deg); }
 .nav-overlay-close span:nth-child(2) { transform:rotate(-45deg); }
 }
+  .screenshot-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  align-items: end;
+}
+.phone-frame {
+  background: #0f1923;
+  border-radius: 36px;
+  padding: 10px;
+  box-shadow: 0 8px 32px rgba(15,25,35,.18), 0 1px 0 rgba(255,255,255,.08) inset;
+  position: relative;
+}
+.phone-frame::before {
+  content: '';
+  display: block;
+  width: 36%;
+  height: 5px;
+  background: #1a2530;
+  border-radius: 3px;
+  margin: 0 auto 8px;
+}
+.phone-screen {
+  border-radius: 28px;
+  overflow: hidden;
+  aspect-ratio: 9/19.5;
+  background: #000;
+}
+.phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 900px) {
+  .screenshot-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .screenshot-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 </style>
 </head>
 <body>
@@ -269,34 +313,14 @@ footer { border-top:1px solid var(--border); background:var(--white); }
 <!-- SCREENSHOTS -->
 <div class="page-section reveal">
   <h2 class="section-heading">App <em>Screenshots</em></h2>
-  <p class="section-sub">Screenshots from the current Development version of Seekive</p>
-  <div class="media-grid-main" style="margin-bottom:16px;">
-    <div class="media-slot" style="aspect-ratio:4/3;">
-      <!-- <img src="screenshots/home.png" alt="Seekive Home"> -->
-      <div class="media-slot-icon">📱</div>
-      <div class="media-slot-label">Home / SpinWheel Screen</div>
-      <div class="media-slot-hint">Recommended: 1200 × 900px</div>
-    </div>
-    <div class="media-slot tall">
-      <!-- <img src="screenshots/spinwheel.png" alt="SpinWheel"> -->
-      <div class="media-slot-icon">⊕</div>
-      <div class="media-slot-label">SpinWheel Interface</div>
-      <div class="media-slot-hint">Portrait screenshot</div>
-    </div>
-  </div>
-  <div class="media-grid-3">
-    <div class="media-slot tall">
-      <div class="media-slot-icon">📱</div>
-      <div class="media-slot-label">Discovery Results</div>
-    </div>
-    <div class="media-slot tall">
-      <div class="media-slot-icon">📱</div>
-      <div class="media-slot-label">Activity Detail</div>
-    </div>
-    <div class="media-slot tall">
-      <div class="media-slot-icon">📱</div>
-      <div class="media-slot-label">Profile / Social</div>
-    </div>
+  <p class="section-sub">Screenshots from the current development version of the app across key screens</p>
+  <div class="screenshot-row">
+    <div class="phone-frame"><div class="phone-screen"><img src="../images/SVEDEV4.png" alt="Seekive Screen 4"></div></div>
+    <div class="phone-frame"><div class="phone-screen"><img src="../images/SVEDEV2.png" alt="Seekive Screen 2"></div></div>
+    <div class="phone-frame"><div class="phone-screen"><img src="../images/SVEDEV3.png" alt="Seekive Screen 3"></div></div>
+    <div class="phone-frame"><div class="phone-screen"><img src="../images/SVEDEV5.png" alt="Seekive Screen 5"></div></div>
+    <div class="phone-frame"><div class="phone-screen"><img src="../images/SVEDEV6.png" alt="Seekive Screen 6"></div></div>
+    <div class="phone-frame"><div class="phone-screen"><img src="../images/SVEDEV1.png" alt="Seekive Screen 1"></div></div>
   </div>
 </div>
 
