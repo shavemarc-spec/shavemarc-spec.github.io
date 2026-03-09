@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI & Creative — Marc Shave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+:root {
+  --white:#ffffff; --off:#f7f8fa; --border:#e2e6ed; --border2:#ccd4e0;
+  --text:#0f1923; --text2:#4a5568; --text3:#8896a8;
+  --blue:#1c5bd6; --blue-dk:#1448b0; --blue-lt:#eef3fd; --blue-mid:#d0dff9;
+}
+body { background:var(--white); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+/* ── NAV ── */
+header { position:sticky; top:0; z-index:200; background:var(--white); border-bottom:1px solid var(--border); }
+nav { max-width:1100px; margin:0 auto; height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; }
+.nav-logo { font-size:.95rem; font-weight:600; letter-spacing:-.01em; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:9px; }
+.nav-logo-mark { width:28px; height:28px; border-radius:7px; background:var(--blue); display:flex; align-items:center; justify-content:center; color:white; font-size:.75rem; font-weight:700; }
+.nav-links { display:flex; align-items:center; gap:2px; list-style:none; }
+.nav-links a { display:block; padding:7px 14px; border-radius:7px; font-size:.83rem; font-weight:500; color:var(--text2); text-decoration:none; transition:background .18s,color .18s; }
+.nav-links a:hover { background:var(--off); color:var(--text); }
+.nav-links a.active { color:var(--blue); background:var(--blue-lt); }
+.nav-contact { background:var(--blue)!important; color:white!important; font-weight:600!important; }
+.nav-contact:hover { background:var(--blue-dk)!important; }
+
+/* ── PAGE HEADER ── */
+.page-header { border-bottom:1px solid var(--border); }
+.page-header-inner { max-width:1100px; margin:0 auto; padding:56px 32px 48px; }
+.breadcrumb { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:.75rem; color:var(--text3); }
+.breadcrumb a { color:var(--text3); text-decoration:none; transition:color .18s; }
+.breadcrumb a:hover { color:var(--blue); }
+.breadcrumb-sep { color:var(--border2); }
+.page-type { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.page-type::before { content:''; display:block; width:20px; height:2px; background:var(--blue); border-radius:2px; }
+.page-title { font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:400; letter-spacing:-.025em; line-height:1.05; color:var(--text); margin-bottom:16px; }
+.page-title em { font-style:italic; color:var(--blue); }
+.page-desc { font-size:1rem; color:var(--text2); max-width:640px; line-height:1.75; }
+.page-desc strong { color:var(--text); font-weight:500; }
+
+/* ── META BAR ── */
+.meta-bar { background:var(--off); border-bottom:1px solid var(--border); }
+.meta-bar-inner { max-width:1100px; margin:0 auto; padding:0 32px; display:flex; flex-wrap:wrap; }
+.meta-item { padding:18px 28px 18px 0; margin-right:28px; border-right:1px solid var(--border); }
+.meta-item:last-child { border-right:none; }
+.meta-label { font-size:.62rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--text3); margin-bottom:3px; }
+.meta-val { font-size:.83rem; font-weight:600; color:var(--text); }
+
+/* ── SECTIONS ── */
+.page-section { max-width:1100px; margin:0 auto; padding:60px 32px; border-bottom:1px solid var(--border); }
+.page-section:last-of-type { border-bottom:none; }
+.section-label { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); margin-bottom:8px; }
+.section-heading { font-family:'Fraunces',serif; font-size:1.6rem; font-weight:400; letter-spacing:-.02em; color:var(--text); margin-bottom:6px; }
+.section-heading em { font-style:italic; color:var(--blue); }
+.section-sub { font-size:.85rem; color:var(--text3); margin-bottom:32px; line-height:1.65; max-width:640px; }
+
+/* ── GALLERY — MASONRY-STYLE ── */
+/* 
+  HOW TO ADD YOUR IMAGES:
+  Replace the contents of each .img-slot with a real <img> tag:
+  <img src="../images/your-image.jpg" alt="Description">
+  
+  You can also change the span class to control sizing:
+  - .span-wide  → 2 columns wide (landscape)
+  - .span-tall  → 2 rows tall  (portrait)
+  - default     → 1×1 square
+*/
+
+.gallery-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  grid-auto-rows:260px;
+  gap:12px;
+}
+
+.img-slot {
+  background:var(--off);
+  border:2px dashed var(--border2);
+  border-radius:14px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-align:center;
+  padding:20px;
+  transition:border-color .22s, background .22s;
+  cursor:default;
+}
+.img-slot:hover { border-color:var(--blue-mid); background:var(--blue-lt); }
+.img-slot.span-wide { grid-column: span 2; }
+.img-slot.span-tall { grid-row: span 2; }
+
+/* When a real image is placed inside */
+.img-slot img {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:12px;
+  transition:transform .4s ease;
+}
+.img-slot:hover img { transform:scale(1.03); }
+
+/* Image overlay label (appears on hover over real images) */
+.img-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(15,25,35,.7) 0%, transparent 50%);
+  border-radius:12px;
+  opacity:0;
+  transition:opacity .25s;
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+}
+.img-slot:hover .img-overlay { opacity:1; }
+.img-overlay-text { font-size:.76rem; font-weight:600; color:white; line-height:1.4; }
+
+/* Placeholder state */
+.slot-icon { font-size:1.8rem; opacity:.3; }
+.slot-label { font-size:.75rem; font-weight:600; color:var(--text3); }
+.slot-hint { font-size:.65rem; color:var(--border2); }
+
+/* ── WORKFLOW CARDS ── */
+.workflow-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.workflow-card {
+  background:var(--off); border:1px solid var(--border); border-radius:12px;
+  padding:28px 26px; transition:border-color .22s;
+}
+.workflow-card:hover { border-color:var(--blue-mid); }
+.wf-step { font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:6px; }
+.wf-title { font-size:.95rem; font-weight:700; color:var(--text); margin-bottom:8px; letter-spacing:-.01em; }
+.wf-desc { font-size:.82rem; color:var(--text2); line-height:1.65; margin-bottom:16px; }
+.wf-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.wf-tag { font-size:.65rem; font-weight:600; padding:3px 10px; border-radius:5px; background:var(--white); border:1px solid var(--border); color:var(--text3); }
+.wf-tag.blue { background:var(--blue-lt); border-color:var(--blue-mid); color:var(--blue); }
+
+/* ── CERT CALLOUT ── */
+.cert-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:32px; }
+.cert-pill {
+  display:flex; align-items:center; gap:10px;
+  background:var(--off); border:1px solid var(--border); border-radius:10px;
+  padding:12px 18px; text-decoration:none; color:inherit;
+  transition:border-color .2s, transform .2s;
+}
+.cert-pill:hover { border-color:var(--blue); transform:translateY(-2px); }
+.cert-pill-icon { font-size:1rem; }
+.cert-pill-text { font-size:.78rem; font-weight:600; color:var(--text); }
+.cert-pill-issuer { font-size:.66rem; color:var(--blue); margin-top:1px; }
+.cert-pill-arrow { font-size:.7rem; color:var(--text3); margin-left:4px; }
+
+/* ── AI APPROACH STRIP ── */
+.approach-strip {
+  background:var(--blue-lt); border:1px solid var(--blue-mid); border-radius:14px;
+  padding:28px 30px; display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap;
+}
+.approach-icon { font-size:2rem; flex-shrink:0; }
+.approach-body { flex:1; min-width:260px; }
+.approach-title { font-size:.9rem; font-weight:700; color:var(--text); margin-bottom:8px; }
+.approach-text { font-size:.83rem; color:var(--text2); line-height:1.7; }
+.approach-text strong { color:var(--text); }
+
+/* ── FOOTER ── */
+footer { border-top:1px solid var(--border); background:var(--white); }
+.footer-inner { max-width:1100px; margin:0 auto; padding:36px 32px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.footer-logo { font-size:.9rem; font-weight:600; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+.footer-nav { display:flex; gap:20px; }
+.footer-nav a { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-nav a:hover { color:var(--blue); }
+.footer-right { display:flex; align-items:center; gap:16px; }
+.footer-email { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-email:hover { color:var(--blue); }
+.footer-copy { font-size:.7rem; color:var(--text3); }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
+.reveal.d1 { transition-delay:.08s; } .reveal.d2 { transition-delay:.16s; } .reveal.d3 { transition-delay:.24s; }
+.reveal.in { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:900px) {
+  nav { padding:0 20px; }
+  .nav-links li:nth-child(n+3):not(:last-child) { display:none; }
+  .page-header-inner { padding:40px 20px 36px; }
+  .meta-bar-inner { padding:0 20px; }
+  .page-section { padding:40px 20px; }
+  .gallery-grid { grid-template-columns:1fr 1fr; grid-auto-rows:200px; }
+  .img-slot.span-wide { grid-column:span 2; }
+  .img-slot.span-tall { grid-row:span 1; }
+  .workflow-grid { grid-template-columns:1fr; }
+  .footer-inner { flex-direction:column; align-items:flex-start; padding:28px 20px; }
+}
+@media (max-width:560px) {
+  .gallery-grid { grid-template-columns:1fr; grid-auto-rows:220px; }
+  .img-slot.span-wide { grid-column:span 1; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="/" class="nav-logo"><div class="nav-logo-mark">MS</div>Marc Shave</a>
+    <ul class="nav-links">
+      <li><a href="/about">About</a></li>
+      <li><a href="/seekive">Seekive</a></li>
+      <li><a href="/video">Video</a></li>
+      <li><a href="/ai-creative" class="active">AI &amp; Creative</a></li>
+      <li><a href="/skills">Skills</a></li>
+      <li><a href="/contact" class="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="/">Home</a><span class="breadcrumb-sep">/</span><span>AI &amp; Creative</span>
+    </div>
+    <div class="page-type">AI &amp; Generative Creative</div>
+    <h1 class="page-title">AI &amp; <em>Creative Work</em></h1>
+    <p class="page-desc">
+      A collection of generative AI creative work — images, concepts, and workflows produced through <strong>deliberate prompting and AI generation tools</strong>. This covers everything from app asset production for Seekive to standalone generative work, alongside the workflows and techniques behind it. I hold Google Cloud certifications in both Generative AI and Image Generation.
+    </p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-bar-inner">
+    <div class="meta-item"><div class="meta-label">Core Skill</div><div class="meta-val">Prompt Engineering</div></div>
+    <div class="meta-item"><div class="meta-label">Tools</div><div class="meta-val">AI Image Generation · Gemini API</div></div>
+    <div class="meta-item"><div class="meta-label">Certifications</div><div class="meta-val">Google Cloud — Generative AI · Image Generation</div></div>
+    <div class="meta-item"><div class="meta-label">Applied In</div><div class="meta-val">Seekive · Video · Marketing · Creative</div></div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="page-section reveal">
+  <div class="section-label">Generated Work</div>
+  <h2 class="section-heading">Image <em>Gallery</em></h2>
+  <p class="section-sub">
+    AI-generated images produced through custom prompting workflows — drop your images into the slots below. Each slot accepts a standard &lt;img&gt; tag. Wide slots suit landscape images, tall slots suit portraits.
+  </p>
+
+  <div class="gallery-grid">
+
+    <!-- SLOT 1 — Wide feature image (2 cols) -->
+    <div class="img-slot span-wide">
+      <!-- To add image: <img src="../images/hero.jpg" alt="Description">
+           <div class="img-overlay"><div class="img-overlay-text">Title · Tool used</div></div> -->
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">Featured / Hero Image</div>
+      <div class="slot-hint">Landscape — 2 columns wide · Recommended 1600×900px</div>
+    </div>
+
+    <!-- SLOT 2 — Tall portrait -->
+    <div class="img-slot span-tall">
+      <!-- <img src="../images/portrait-1.jpg" alt="">
+           <div class="img-overlay"><div class="img-overlay-text">Title</div></div> -->
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">Portrait Image</div>
+      <div class="slot-hint">2 rows tall</div>
+    </div>
+
+    <!-- SLOT 3 -->
+    <div class="img-slot">
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">AI Generated Image</div>
+    </div>
+
+    <!-- SLOT 4 -->
+    <div class="img-slot">
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">AI Generated Image</div>
+    </div>
+
+    <!-- SLOT 5 — Wide -->
+    <div class="img-slot span-wide">
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">Wide Format Image</div>
+      <div class="slot-hint">2 columns wide</div>
+    </div>
+
+    <!-- SLOT 6 — Tall portrait -->
+    <div class="img-slot span-tall">
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">Portrait Image</div>
+      <div class="slot-hint">2 rows tall</div>
+    </div>
+
+    <!-- SLOT 7 -->
+    <div class="img-slot">
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">AI Generated Image</div>
+    </div>
+
+    <!-- SLOT 8 -->
+    <div class="img-slot">
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">AI Generated Image</div>
+    </div>
+
+    <!-- SLOT 9 -->
+    <div class="img-slot">
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">AI Generated Image</div>
+    </div>
+
+    <!-- SLOT 10 — Wide -->
+    <div class="img-slot span-wide">
+      <div class="slot-icon">🎨</div>
+      <div class="slot-label">Wide Format Image</div>
+      <div class="slot-hint">2 columns wide</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SEEKIVE AI IMAGES -->
+<div class="page-section reveal">
+  <div class="section-label">Applied AI Work</div>
+  <h2 class="section-heading">Seekive — <em>App Imagery</em></h2>
+  <p class="section-sub">
+    These images were produced specifically for use inside the Seekive app — generated through AI prompting workflows to visually represent activities, moods, and environments. Each image was crafted with intent: right mood, right palette, right subject.
+  </p>
+
+  <div class="gallery-grid">
+    <div class="img-slot">
+      <!-- <img src="../images/seekive-1.jpg" alt="Seekive activity image">
+           <div class="img-overlay"><div class="img-overlay-text">Category: Outdoor · Sunny afternoon</div></div> -->
+      <div class="slot-icon">⊕</div>
+      <div class="slot-label">Seekive Activity Image</div>
+      <div class="slot-hint">Used in-app</div>
+    </div>
+    <div class="img-slot">
+      <div class="slot-icon">⊕</div>
+      <div class="slot-label">Seekive Activity Image</div>
+      <div class="slot-hint">Used in-app</div>
+    </div>
+    <div class="img-slot">
+      <div class="slot-icon">⊕</div>
+      <div class="slot-label">Seekive Activity Image</div>
+      <div class="slot-hint">Used in-app</div>
+    </div>
+    <div class="img-slot">
+      <div class="slot-icon">⊕</div>
+      <div class="slot-label">Seekive Activity Image</div>
+      <div class="slot-hint">Used in-app</div>
+    </div>
+    <div class="img-slot">
+      <div class="slot-icon">⊕</div>
+      <div class="slot-label">Seekive Activity Image</div>
+      <div class="slot-hint">Used in-app</div>
+    </div>
+    <div class="img-slot">
+      <div class="slot-icon">⊕</div>
+      <div class="slot-label">Seekive Activity Image</div>
+      <div class="slot-hint">Used in-app</div>
+    </div>
+  </div>
+</div>
+
+<!-- WORKFLOW -->
+<div class="page-section reveal">
+  <div class="section-label">Process</div>
+  <h2 class="section-heading">How I <em>Work</em> with AI</h2>
+  <p class="section-sub">
+    Producing good AI-generated images requires intentional prompting — not just typing a description and hoping. Here's the workflow behind the work above.
+  </p>
+
+  <div class="workflow-grid">
+    <div class="workflow-card">
+      <div class="wf-step">Step 01</div>
+      <div class="wf-title">Define the brief</div>
+      <div class="wf-desc">Before generating anything, I establish what the image needs to do — what mood, what context, who sees it, and what it sits alongside. For Seekive this meant understanding each activity category deeply before generating assets for it.</div>
+      <div class="wf-tags"><span class="wf-tag blue">Research</span><span class="wf-tag blue">Planning</span></div>
+    </div>
+    <div class="workflow-card">
+      <div class="wf-step">Step 02</div>
+      <div class="wf-title">Craft the prompt</div>
+      <div class="wf-desc">Prompting is a technical skill. I build prompts with precise subject description, style direction, lighting, camera angle, colour palette, mood, and negative prompts to exclude unwanted elements. Iteration is built in from the start.</div>
+      <div class="wf-tags"><span class="wf-tag blue">Prompt Engineering</span><span class="wf-tag">Iteration</span></div>
+    </div>
+    <div class="workflow-card">
+      <div class="wf-step">Step 03</div>
+      <div class="wf-title">Generate &amp; refine</div>
+      <div class="wf-desc">Multiple generations are produced and evaluated against the brief. Prompt parameters are adjusted based on what's working — subject framing, composition, style consistency, and cohesion across a set of images.</div>
+      <div class="wf-tags"><span class="wf-tag blue">Generation</span><span class="wf-tag">Quality Control</span></div>
+    </div>
+    <div class="workflow-card">
+      <div class="wf-step">Step 04</div>
+      <div class="wf-title">Post-process &amp; apply</div>
+      <div class="wf-desc">Selected outputs are refined in Adobe Photoshop or Lightroom where needed — colour matching, cropping, and any compositing. Final assets are prepared for their target format, whether app UI, web, or print.</div>
+      <div class="wf-tags"><span class="wf-tag blue">Photoshop</span><span class="wf-tag blue">Lightroom</span><span class="wf-tag">Compositing</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- AI ACROSS DISCIPLINES -->
+<div class="page-section reveal">
+  <div class="section-label">Wider AI Use</div>
+  <h2 class="section-heading">AI Across <em>Every Discipline</em></h2>
+  <p class="section-sub">Generative image work is one part of how I use AI. Across all my work — development, video, marketing, writing — AI through prompting is a core part of the process.</p>
+
+  <div class="approach-strip">
+    <div class="approach-icon">🤖</div>
+    <div class="approach-body">
+      <div class="approach-title">AI as a core tool, not an afterthought</div>
+      <div class="approach-text">
+        I use AI to <strong>research</strong> topics in depth, <strong>plan</strong> project structure and timelines, <strong>draft</strong> scripts, copy, and documentation, <strong>generate</strong> visual and creative assets, and <strong>refine</strong> outputs iteratively. On Seekive, AI is embedded at the product level — real-time recommendations via Google Gemini, and AI-generated imagery used throughout the app's UI. On video projects, AI assists with research, scripting and shot planning before I ever open Premiere Pro. This breadth is reflected in my Google Cloud certifications in Generative AI and Image Generation, completed in 2024.
+      </div>
+    </div>
+  </div>
+
+  <div class="cert-row">
+    <a href="https://www.coursera.org/account/accomplishments/verify/GXWQPNCDAVHQ" target="_blank" class="cert-pill">
+      <div class="cert-pill-icon">☁️</div>
+      <div>
+        <div class="cert-pill-text">Introduction to Generative AI</div>
+        <div class="cert-pill-issuer">Google Cloud · Mar 2024</div>
+      </div>
+      <div class="cert-pill-arrow">↗</div>
+    </a>
+    <a href="https://www.coursera.org/account/accomplishments/verify/HVSWZHSH7LS2" target="_blank" class="cert-pill">
+      <div class="cert-pill-icon">🖼️</div>
+      <div>
+        <div class="cert-pill-text">Introduction to Image Generation</div>
+        <div class="cert-pill-issuer">Google Cloud · Apr 2024</div>
+      </div>
+      <div class="cert-pill-arrow">↗</div>
+    </a>
+    <a href="/skills" class="cert-pill">
+      <div class="cert-pill-icon">✦</div>
+      <div>
+        <div class="cert-pill-text">View all 4 certifications</div>
+        <div class="cert-pill-issuer">Skills &amp; Credentials page</div>
+      </div>
+      <div class="cert-pill-arrow">→</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo"><div class="nav-logo-mark" style="width:24px;height:24px;font-size:.68rem;">MS</div>Marc Shave</a>
+    <nav class="footer-nav">
+      <a href="/about">About</a>
+      <a href="/seekive">Seekive</a>
+      <a href="/video">Video</a>
+      <a href="/skills">Skills</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <div class="footer-right">
+      <a href="mailto:hello@marcshave.com" class="footer-email">hello@marcshave.com</a>
+      <span class="footer-copy">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
