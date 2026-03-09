@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Skills & About — Marc Shave</title>
+<title>About — Marc Shave</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 :root {
   --white:#ffffff; --off:#f7f8fa; --border:#e2e6ed; --border2:#ccd4e0;
   --text:#0f1923; --text2:#4a5568; --text3:#8896a8;
@@ -16,7 +16,6 @@ html { scroll-behavior: smooth; }
 }
 body { background:var(--white); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased; }
 
-/* NAV */
 header { position:sticky; top:0; z-index:200; background:var(--white); border-bottom:1px solid var(--border); }
 nav { max-width:1100px; margin:0 auto; height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; }
 .nav-logo { font-size:.95rem; font-weight:600; letter-spacing:-.01em; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:9px; }
@@ -26,117 +25,89 @@ nav { max-width:1100px; margin:0 auto; height:60px; display:flex; align-items:ce
 .nav-links a:hover { background:var(--off); color:var(--text); }
 .nav-links a.active { color:var(--blue); background:var(--blue-lt); }
 .nav-contact { background:var(--blue)!important; color:white!important; font-weight:600!important; }
-.nav-contact:hover { background:var(--blue-dk)!important; color:white!important; }
+.nav-contact:hover { background:var(--blue-dk)!important; }
 
-/* PAGE HEADER */
 .page-header { border-bottom:1px solid var(--border); }
-.page-header-inner { max-width:1100px; margin:0 auto; padding:56px 32px 48px; display:grid; grid-template-columns:1fr 320px; gap:64px; align-items:start; }
+.page-header-inner { max-width:1100px; margin:0 auto; padding:56px 32px 48px; display:grid; grid-template-columns:1fr 300px; gap:64px; align-items:start; }
 .breadcrumb { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:.75rem; color:var(--text3); }
-.breadcrumb a { color:var(--text3); text-decoration:none; transition:color .18s; }
-.breadcrumb a:hover { color:var(--blue); }
+.breadcrumb a { color:var(--text3); text-decoration:none; } .breadcrumb a:hover { color:var(--blue); }
 .breadcrumb-sep { color:var(--border2); }
 .page-type { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
 .page-type::before { content:''; display:block; width:20px; height:2px; background:var(--blue); border-radius:2px; }
-.page-title { font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:400; letter-spacing:-.025em; line-height:1.05; color:var(--text); margin-bottom:16px; }
+.page-title { font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:400; letter-spacing:-.025em; line-height:1.05; color:var(--text); margin-bottom:20px; }
 .page-title em { font-style:italic; color:var(--blue); }
-.page-desc { font-size:1rem; color:var(--text2); line-height:1.75; }
-.page-desc strong { color:var(--text); font-weight:500; }
-.page-desc p { margin-bottom:14px; }
-.page-desc p:last-child { margin-bottom:0; }
+.bio p { font-size:1rem; color:var(--text2); line-height:1.8; margin-bottom:18px; }
+.bio p:last-child { margin-bottom:0; }
+.bio strong { color:var(--text); font-weight:500; }
 
-/* ASIDE CARD */
-.aside-card { background:var(--off); border:1px solid var(--border); border-radius:14px; padding:24px; }
-.aside-row { display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--border); }
-.aside-row:first-child { padding-top:0; }
-.aside-row:last-child { border-bottom:none; padding-bottom:0; }
-.aside-key { font-size:.68rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--text3); }
-.aside-val { font-size:.8rem; font-weight:600; color:var(--text); text-align:right; }
+.aside-card { background:var(--off); border:1px solid var(--border); border-radius:14px; padding:24px; position:sticky; top:80px; }
+.aside-row { display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--border); gap:12px; }
+.aside-row:first-child { padding-top:0; } .aside-row:last-child { border-bottom:none; padding-bottom:0; }
+.aside-key { font-size:.65rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--text3); white-space:nowrap; }
+.aside-val { font-size:.8rem; font-weight:600; color:var(--text); text-align:right; line-height:1.4; }
 .aside-val.blue { color:var(--blue); }
 .aside-val.green { color:#16a34a; }
 
-/* SECTIONS */
-.page-section { max-width:1100px; margin:0 auto; padding:56px 32px; border-bottom:1px solid var(--border); }
-.page-section:last-of-type { border-bottom:none; }
+/* DISCIPLINES */
+.disciplines { max-width:1100px; margin:0 auto; padding:0 32px 56px; }
+.disc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.disc-card { background:var(--off); border:1px solid var(--border); border-radius:12px; padding:24px 20px; text-decoration:none; color:inherit; transition:border-color .22s, transform .2s; display:block; }
+.disc-card:hover { border-color:var(--blue); transform:translateY(-2px); }
+.disc-icon { font-size:1.3rem; margin-bottom:12px; }
+.disc-name { font-size:.85rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+.disc-note { font-size:.74rem; color:var(--text3); line-height:1.5; }
+.disc-arrow { font-size:.75rem; color:var(--blue); margin-top:12px; display:block; }
+
+/* WORK SECTION */
+.page-section { max-width:1100px; margin:0 auto; padding:56px 32px; border-top:1px solid var(--border); }
 .section-label { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); margin-bottom:8px; }
 .section-heading { font-family:'Fraunces',serif; font-size:1.6rem; font-weight:400; letter-spacing:-.02em; color:var(--text); margin-bottom:6px; }
 .section-heading em { font-style:italic; color:var(--blue); }
-.section-sub { font-size:.85rem; color:var(--text3); margin-bottom:32px; line-height:1.6; }
+.section-sub { font-size:.85rem; color:var(--text3); margin-bottom:28px; line-height:1.6; max-width:600px; }
 
-/* SKILLS GRID */
-.skills-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
-.skill-group { background:var(--off); border:1px solid var(--border); border-radius:12px; padding:24px 22px; transition:border-color .22s; }
-.skill-group:hover { border-color:var(--blue-mid); }
-.skill-group-head { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
-.skill-group-icon { width:34px; height:34px; border-radius:9px; background:var(--white); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:.9rem; }
-.skill-group-name { font-size:.85rem; font-weight:700; color:var(--text); }
-.skill-chips { display:flex; flex-wrap:wrap; gap:6px; }
-.chip { font-size:.68rem; font-weight:500; padding:4px 10px; border-radius:6px; background:var(--white); border:1px solid var(--border); color:var(--text2); transition:all .18s; }
-.chip:hover { border-color:var(--blue-mid); color:var(--blue); background:var(--blue-lt); }
-.chip.blue { background:var(--blue-lt); border-color:var(--blue-mid); color:var(--blue); font-weight:600; }
+.ai-block { background:var(--blue-lt); border:1px solid var(--blue-mid); border-radius:14px; padding:32px 30px; }
+.ai-block-title { font-size:.88rem; font-weight:700; color:var(--text); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.ai-block-body { font-size:.85rem; color:var(--text2); line-height:1.75; margin-bottom:20px; }
+.ai-block-body strong { color:var(--text); }
+.ai-uses { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+.ai-use { display:flex; align-items:center; gap:8px; background:var(--white); border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:.78rem; font-weight:500; color:var(--text2); }
 
-/* EDUCATION */
-.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.edu-card { background:var(--off); border:1px solid var(--border); border-radius:12px; padding:28px 26px; position:relative; overflow:hidden; transition:border-color .22s; }
-.edu-card:hover { border-color:var(--blue-mid); }
-.edu-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--blue), var(--blue-mid)); }
-.edu-school { font-size:.68rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
-.edu-qual { font-size:1rem; font-weight:700; letter-spacing:-.01em; color:var(--text); margin-bottom:4px; line-height:1.25; }
-.edu-subject { font-size:.85rem; color:var(--text2); margin-bottom:18px; }
-.edu-meta { display:flex; justify-content:space-between; align-items:center; }
-.edu-dates { font-size:.72rem; color:var(--text3); }
-.edu-grade { display:flex; align-items:center; gap:6px; background:var(--white); border:1px solid var(--blue-mid); border-radius:7px; padding:5px 12px; }
-.edu-grade-label { font-size:.6rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--blue); }
-.edu-grade-val { font-size:.88rem; font-weight:800; color:var(--text); }
+/* CTA ROW */
+.cta-row { max-width:1100px; margin:0 auto; padding:0 32px 64px; display:flex; gap:12px; flex-wrap:wrap; }
+.cta-primary { display:inline-flex; align-items:center; gap:8px; background:var(--blue); color:white; padding:13px 22px; border-radius:9px; font-size:.88rem; font-weight:600; text-decoration:none; transition:background .18s, transform .15s; }
+.cta-primary:hover { background:var(--blue-dk); transform:translateY(-1px); }
+.cta-secondary { display:inline-flex; align-items:center; gap:8px; background:var(--white); color:var(--text); border:1px solid var(--border); padding:13px 22px; border-radius:9px; font-size:.88rem; font-weight:600; text-decoration:none; transition:border-color .18s, transform .15s; }
+.cta-secondary:hover { border-color:var(--blue); color:var(--blue); transform:translateY(-1px); }
 
-/* CERTIFICATIONS */
-.certs-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-.cert-card { display:flex; align-items:flex-start; gap:16px; background:var(--off); border:1px solid var(--border); border-radius:12px; padding:22px 22px; text-decoration:none; color:inherit; transition:border-color .22s, transform .22s; }
-.cert-card:hover { border-color:var(--blue); transform:translateY(-2px); }
-.cert-logo { width:40px; height:40px; border-radius:10px; background:var(--white); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
-.cert-title { font-size:.88rem; font-weight:700; color:var(--text); margin-bottom:3px; letter-spacing:-.01em; line-height:1.3; }
-.cert-issuer { font-size:.7rem; font-weight:600; color:var(--blue); margin-bottom:6px; }
-.cert-meta { font-size:.66rem; color:var(--text3); margin-bottom:8px; }
-.cert-verify { display:inline-flex; align-items:center; gap:4px; font-size:.65rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); transition:gap .18s; }
-.cert-card:hover .cert-verify { gap:8px; }
-
-/* AI SECTION */
-.ai-section { background:var(--blue-lt); border:1px solid var(--blue-mid); border-radius:14px; padding:32px 30px; }
-.ai-section-title { font-size:.85rem; font-weight:700; color:var(--text); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
-.ai-section-body { font-size:.85rem; color:var(--text2); line-height:1.7; }
-.ai-section-body strong { color:var(--text); }
-.ai-uses { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:18px; }
-.ai-use-item { display:flex; align-items:center; gap:8px; background:var(--white); border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:.78rem; font-weight:500; color:var(--text2); }
-.ai-use-icon { font-size:.9rem; flex-shrink:0; }
-
-/* FOOTER */
 footer { border-top:1px solid var(--border); background:var(--white); }
 .footer-inner { max-width:1100px; margin:0 auto; padding:36px 32px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
 .footer-logo { font-size:.9rem; font-weight:600; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
 .footer-nav { display:flex; gap:20px; }
 .footer-nav a { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
 .footer-nav a:hover { color:var(--blue); }
+.footer-right { display:flex; align-items:center; gap:16px; }
 .footer-email { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
 .footer-email:hover { color:var(--blue); }
 .footer-copy { font-size:.7rem; color:var(--text3); }
 
-/* REVEAL */
 .reveal { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
 .reveal.d1 { transition-delay:.08s; } .reveal.d2 { transition-delay:.16s; } .reveal.d3 { transition-delay:.24s; }
 .reveal.in { opacity:1; transform:none; }
 
 @media (max-width:960px) {
-  nav { padding:0 20px; } .nav-links li:nth-child(-n+3) { display:none; }
+  nav { padding:0 20px; } .nav-links li:nth-child(n+3):not(:last-child) { display:none; }
   .page-header-inner { grid-template-columns:1fr; gap:32px; padding:40px 20px 36px; }
-  .aside-card { display:none; }
+  .aside-card { position:static; }
+  .disciplines { padding:0 20px 40px; }
+  .disc-grid { grid-template-columns:1fr 1fr; }
   .page-section { padding:40px 20px; }
-  .skills-grid { grid-template-columns:1fr 1fr; }
-  .edu-grid { grid-template-columns:1fr; }
-  .certs-grid { grid-template-columns:1fr; }
-  .ai-uses { grid-template-columns:1fr; }
+  .ai-uses { grid-template-columns:1fr 1fr; }
+  .cta-row { padding:0 20px 48px; }
   .footer-inner { flex-direction:column; align-items:flex-start; padding:28px 20px; }
 }
-@media (max-width:600px) {
-  .skills-grid { grid-template-columns:1fr; }
+@media (max-width:560px) {
+  .disc-grid { grid-template-columns:1fr; }
+  .ai-uses { grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -144,155 +115,68 @@ footer { border-top:1px solid var(--border); background:var(--white); }
 
 <header>
   <nav>
-    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">MS</div>Marc Shave</a>
+    <a href="/" class="nav-logo"><div class="nav-logo-mark">MS</div>Marc Shave</a>
     <ul class="nav-links">
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="seekive.html">Seekive</a></li>
-      <li><a href="video.html">Video</a></li>
-      <li><a href="ai-creative.html">AI &amp; Creative</a></li>
-      <li><a href="contact.html" class="nav-contact">Contact</a></li>
+      <li><a href="/about" class="active">About</a></li>
+      <li><a href="/seekive">Seekive</a></li>
+      <li><a href="/video">Video</a></li>
+      <li><a href="/skills">Skills</a></li>
+      <li><a href="/contact" class="nav-contact">Contact</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-inner">
     <div>
-      <div class="breadcrumb">
-        <a href="index.html">Home</a>
-        <span class="breadcrumb-sep">/</span>
-        <span>About</span>
-      </div>
-      <div class="page-type">About &amp; Skills</div>
+      <div class="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">/</span><span>About</span></div>
+      <div class="page-type">About Me</div>
       <h1 class="page-title">Marc <em>Shave</em></h1>
-      <div class="page-desc">
+      <div class="bio">
         <p>I'm a creative developer and builder who works across app development, video production, AI-powered creative projects, and digital marketing. I take ideas from concept to completion — whether that's a full-stack mobile app, a short-form video, or a generative AI workflow.</p>
-        <p>A core part of how I work is <strong>leveraging AI through prompting</strong> — using it to research, plan, draft, generate and produce across every discipline I work in. This isn't a shortcut; it's a skill in itself, and one I've deliberately developed through both hands-on practice and formal certification.</p>
-        <p>My background is in creative media — I studied at Strode College and achieved a <strong>D*D*D*</strong> in Creative Media Production, giving me a strong foundation in storytelling, production, and visual communication that informs everything I do today.</p>
+        <p>A core part of how I work is <strong>leveraging AI through prompting</strong> — using it to research, plan, draft, generate and produce across every discipline I work in. This isn't a shortcut; it's a skill in itself, and one I've deliberately developed alongside formal certification in generative AI and image generation from Google Cloud.</p>
+        <p>My background is in creative media — I studied at Strode College and achieved a <strong>D*D*D* Triple Distinction</strong> in Creative Media Production and a <strong>D* Distinction</strong> in IT, giving me a strong foundation in storytelling, production, and technical thinking that informs everything I build today.</p>
+        <p>My flagship product is <strong>Seekive</strong> — an AI-powered discovery app built end-to-end in React Native with Firebase and Google Gemini, live on iOS and Android, and shortlisted for the SMEnews UK Enterprise Awards 2026.</p>
       </div>
     </div>
     <div class="aside-card">
       <div class="aside-row"><span class="aside-key">Status</span><span class="aside-val green">● Open to opportunities</span></div>
-      <div class="aside-row"><span class="aside-key">Award</span><span class="aside-val blue" style="font-size:.72rem;line-height:1.4;text-align:right;">SMEnews UK Enterprise<br>Awards 2026 — Shortlisted</span></div>
-      <div class="aside-row"><span class="aside-key">Education</span><span class="aside-val">D*D*D* Strode College</span></div>
-      <div class="aside-row"><span class="aside-key">Google Certs</span><span class="aside-val">4 Completed</span></div>
-      <div class="aside-row"><span class="aside-key">Primary Stack</span><span class="aside-val">RN · Firebase · Adobe</span></div>
-      <div class="aside-row"><span class="aside-key">Live Product</span><span class="aside-val blue">seekive.com</span></div>
+      <div class="aside-row"><span class="aside-key">Award</span><span class="aside-val blue" style="font-size:.72rem;line-height:1.5;">SMEnews UK Enterprise<br>Awards 2026 — Shortlisted</span></div>
+      <div class="aside-row"><span class="aside-key">Education</span><span class="aside-val">D*D*D* · D*<br><span style="font-size:.7rem;font-weight:400;color:var(--text3);">Strode College</span></span></div>
+      <div class="aside-row"><span class="aside-key">Certifications</span><span class="aside-val">4 × Google / Google Cloud</span></div>
+      <div class="aside-row"><span class="aside-key">Stack</span><span class="aside-val">React Native · Firebase · Gemini</span></div>
+      <div class="aside-row"><span class="aside-key">Live Product</span><span class="aside-val blue"><a href="/seekive" style="color:var(--blue);text-decoration:none;">Seekive ↗</a></span></div>
     </div>
   </div>
 </div>
 
-<!-- SKILLS -->
-<div id="skills" class="page-section reveal">
-  <div class="section-label">Full Skill Set</div>
-  <h2 class="section-heading">Skills &amp; <em>Tools</em></h2>
-  <p class="section-sub">A complete overview of the tools, technologies, and disciplines I work with across development, creative production, AI, and marketing.</p>
-
-  <div class="skills-grid">
-
-    <div class="skill-group">
-      <div class="skill-group-head">
-        <div class="skill-group-icon">📱</div>
-        <div class="skill-group-name">App &amp; Web Development</div>
-      </div>
-      <div class="skill-chips">
-        <span class="chip blue">React Native</span>
-        <span class="chip blue">Firebase</span>
-        <span class="chip blue">Firestore</span>
-        <span class="chip">JavaScript</span>
-        <span class="chip">HTML &amp; CSS</span>
-        <span class="chip">AdMob</span>
-        <span class="chip">iOS &amp; Android</span>
-        <span class="chip">REST APIs</span>
-        <span class="chip">Git / GitHub</span>
-        <span class="chip">Authentication</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-head">
-        <div class="skill-group-icon">🎨</div>
-        <div class="skill-group-name">Adobe Creative Suite</div>
-      </div>
-      <div class="skill-chips">
-        <span class="chip blue">Premiere Pro</span>
-        <span class="chip blue">Photoshop</span>
-        <span class="chip">After Effects</span>
-        <span class="chip">Illustrator</span>
-        <span class="chip">Lightroom</span>
-        <span class="chip">InDesign</span>
-        <span class="chip">Media Encoder</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-head">
-        <div class="skill-group-icon">🤖</div>
-        <div class="skill-group-name">AI &amp; Generative Tools</div>
-      </div>
-      <div class="skill-chips">
-        <span class="chip blue">Prompt Engineering</span>
-        <span class="chip blue">Google Gemini API</span>
-        <span class="chip blue">AI Image Generation</span>
-        <span class="chip">Generative AI Workflows</span>
-        <span class="chip">@google/genai SDK</span>
-        <span class="chip">AI-Assisted Editing</span>
-        <span class="chip">Research via AI</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-head">
-        <div class="skill-group-icon">🎬</div>
-        <div class="skill-group-name">Video &amp; Media Production</div>
-      </div>
-      <div class="skill-chips">
-        <span class="chip blue">Video Editing</span>
-        <span class="chip blue">Narrative Storytelling</span>
-        <span class="chip">Colour Grading</span>
-        <span class="chip">Motion Graphics</span>
-        <span class="chip">Audio Editing</span>
-        <span class="chip">Short-form Content</span>
-        <span class="chip">Multi-platform Export</span>
-        <span class="chip">Script &amp; Shot Planning</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-head">
-        <div class="skill-group-icon">📣</div>
-        <div class="skill-group-name">Digital Marketing &amp; Social</div>
-      </div>
-      <div class="skill-chips">
-        <span class="chip blue">Social Media Strategy</span>
-        <span class="chip blue">Content Creation</span>
-        <span class="chip">Audience Building</span>
-        <span class="chip">E-commerce Foundations</span>
-        <span class="chip">Campaign Planning</span>
-        <span class="chip">Brand Identity</span>
-        <span class="chip">Analytics</span>
-        <span class="chip">Community Management</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-head">
-        <div class="skill-group-icon">✦</div>
-        <div class="skill-group-name">Product &amp; UX Design</div>
-      </div>
-      <div class="skill-chips">
-        <span class="chip blue">UX Design Principles</span>
-        <span class="chip blue">Mobile UI Design</span>
-        <span class="chip">User Research</span>
-        <span class="chip">Wireframing</span>
-        <span class="chip">Prototyping</span>
-        <span class="chip">Design Systems</span>
-        <span class="chip">Figma</span>
-        <span class="chip">Accessibility</span>
-      </div>
-    </div>
-
+<!-- DISCIPLINES -->
+<div class="disciplines reveal">
+  <div class="disc-grid">
+    <a href="/seekive" class="disc-card">
+      <div class="disc-icon">📱</div>
+      <div class="disc-name">App Development</div>
+      <div class="disc-note">Full-stack mobile — React Native, Firebase, AI integration, live deployment</div>
+      <span class="disc-arrow">View Seekive →</span>
+    </a>
+    <a href="/video" class="disc-card">
+      <div class="disc-icon">🎬</div>
+      <div class="disc-name">Video Editing</div>
+      <div class="disc-note">Premiere Pro, colour grading, narrative storytelling, AI-assisted production</div>
+      <span class="disc-arrow">View work →</span>
+    </a>
+    <a href="/skills" class="disc-card">
+      <div class="disc-icon">🤖</div>
+      <div class="disc-name">AI &amp; Creative</div>
+      <div class="disc-note">Generative AI workflows, image generation, prompt engineering, Gemini API</div>
+      <span class="disc-arrow">View skills →</span>
+    </a>
+    <a href="/skills" class="disc-card">
+      <div class="disc-icon">📣</div>
+      <div class="disc-name">Digital Marketing</div>
+      <div class="disc-note">Social strategy, content creation, audience building, e-commerce — Google certified</div>
+      <span class="disc-arrow">View credentials →</span>
+    </a>
   </div>
 </div>
 
@@ -300,107 +184,35 @@ footer { border-top:1px solid var(--border); background:var(--white); }
 <div class="page-section reveal">
   <div class="section-label">Approach</div>
   <h2 class="section-heading">How I use <em>AI</em></h2>
-  <p class="section-sub">AI is a core tool in my creative and technical workflow — not a replacement for skill, but an extension of it.</p>
-  <div class="ai-section">
-    <div class="ai-section-title">🤖 AI-Driven Workflow</div>
-    <div class="ai-section-body">
-      Across every discipline I work in, I use <strong>AI through prompting</strong> as a deliberate, structured part of my process. This includes researching topics deeply and quickly, planning project structure, drafting scripts and copy, generating visual assets, prototyping ideas, and refining outputs. On Seekive, this spans the entire product — from AI-generated app imagery to real-time recommendations powered by the Gemini API. On video projects, AI assists with research, scripting, shot planning, and production decisions.
+  <p class="section-sub">AI is a deliberate, structured part of my workflow across every discipline — not a replacement for craft, but an extension of it.</p>
+  <div class="ai-block">
+    <div class="ai-block-title">🤖 AI-Driven Workflow</div>
+    <div class="ai-block-body">
+      Across everything I work on, I use <strong>AI through prompting</strong> as a core part of my process. On Seekive this spans the entire product — from real-time AI recommendations via the Gemini API to AI-generated imagery used throughout the app. On video and creative projects, AI assists with research, scripting, shot planning, and asset generation. I have formal Google Cloud certifications in both Generative AI and Image Generation, and treat prompting as a distinct technical skill.
     </div>
     <div class="ai-uses">
-      <div class="ai-use-item"><div class="ai-use-icon">🔍</div>Research &amp; information gathering</div>
-      <div class="ai-use-item"><div class="ai-use-icon">📋</div>Planning, structure &amp; project scoping</div>
-      <div class="ai-use-item"><div class="ai-use-icon">✏️</div>Drafting copy, scripts &amp; content</div>
-      <div class="ai-use-item"><div class="ai-use-icon">🎨</div>Generating images &amp; visual assets</div>
-      <div class="ai-use-item"><div class="ai-use-icon">⚡</div>Real-time AI features in apps (Gemini)</div>
-      <div class="ai-use-item"><div class="ai-use-icon">🔁</div>Iterating, refining &amp; improving work</div>
+      <div class="ai-use">🔍 Research &amp; planning</div>
+      <div class="ai-use">✏️ Drafting &amp; scripting</div>
+      <div class="ai-use">🎨 Generating visual assets</div>
+      <div class="ai-use">⚡ Live AI app features</div>
+      <div class="ai-use">📋 Project scoping</div>
+      <div class="ai-use">🔁 Iterating &amp; refining</div>
     </div>
   </div>
 </div>
 
-<!-- EDUCATION -->
-<div id="education" class="page-section reveal">
-  <div class="section-label">Education</div>
-  <h2 class="section-heading">Academic <em>Background</em></h2>
-  <p class="section-sub">Formal qualifications from Strode College — grounding my practice in both creative media production and information technology.</p>
-  <div class="edu-grid">
-    <div class="edu-card">
-      <div class="edu-school">Strode College</div>
-      <div class="edu-qual">BTEC Level 3 Extended Diploma</div>
-      <div class="edu-subject">Creative Media Production</div>
-      <div class="edu-meta">
-        <span class="edu-dates">Sep 2018 – Mar 2020</span>
-        <div class="edu-grade"><span class="edu-grade-label">Grade</span><span class="edu-grade-val">D*D*D*</span></div>
-      </div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-school">Strode College</div>
-      <div class="edu-qual">BTEC Level 3 Subsidiary Diploma</div>
-      <div class="edu-subject">Information Technology</div>
-      <div class="edu-meta">
-        <span class="edu-dates">Sep 2017 – Jul 2018</span>
-        <div class="edu-grade"><span class="edu-grade-label">Grade</span><span class="edu-grade-val">D*</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CERTIFICATIONS -->
-<div id="certs" class="page-section reveal">
-  <div class="section-label">Certifications</div>
-  <h2 class="section-heading">Courses &amp; <em>Credentials</em></h2>
-  <p class="section-sub">Verified certifications from Google and Google Cloud — all issued via Coursera and independently verifiable.</p>
-  <div class="certs-grid">
-
-    <a href="https://www.coursera.org/account/accomplishments/verify/GXWQPNCDAVHQ" target="_blank" class="cert-card">
-      <div class="cert-logo">☁️</div>
-      <div>
-        <div class="cert-title">Introduction to Generative AI</div>
-        <div class="cert-issuer">Google Cloud</div>
-        <div class="cert-meta">Issued Mar 2024 · ID: GXWQPNCDAVHQ</div>
-        <div class="cert-verify">Verify credential ↗</div>
-      </div>
-    </a>
-
-    <a href="https://www.coursera.org/account/accomplishments/verify/HVSWZHSH7LS2" target="_blank" class="cert-card">
-      <div class="cert-logo">🖼️</div>
-      <div>
-        <div class="cert-title">Introduction to Image Generation</div>
-        <div class="cert-issuer">Google Cloud</div>
-        <div class="cert-meta">Issued Apr 2024 · ID: HVSWZHSH7LS2</div>
-        <div class="cert-verify">Verify credential ↗</div>
-      </div>
-    </a>
-
-    <a href="https://www.coursera.org/account/accomplishments/verify/HM9DMWUNCRL8" target="_blank" class="cert-card">
-      <div class="cert-logo">📊</div>
-      <div>
-        <div class="cert-title">Foundations of Digital Marketing &amp; E-commerce</div>
-        <div class="cert-issuer">Google</div>
-        <div class="cert-meta">Issued Apr 2024 · ID: HM9DMWUNCRL8</div>
-        <div class="cert-verify">Verify credential ↗</div>
-      </div>
-    </a>
-
-    <a href="https://www.coursera.org/account/accomplishments/verify/EZWWAKER9MXP" target="_blank" class="cert-card">
-      <div class="cert-logo">🎯</div>
-      <div>
-        <div class="cert-title">Foundations of User Experience (UX) Design</div>
-        <div class="cert-issuer">Google</div>
-        <div class="cert-meta">Issued Apr 2024 · ID: EZWWAKER9MXP</div>
-        <div class="cert-verify">Verify credential ↗</div>
-      </div>
-    </a>
-
-  </div>
+<div class="cta-row reveal">
+  <a href="/skills" class="cta-primary">View full skills &amp; qualifications →</a>
+  <a href="/contact" class="cta-secondary">Get in touch</a>
 </div>
 
 <footer>
   <div class="footer-inner">
-    <a href="index.html" class="footer-logo"><div class="nav-logo-mark" style="width:24px;height:24px;font-size:.68rem;">MS</div>Marc Shave</a>
+    <a href="/" class="footer-logo"><div class="nav-logo-mark" style="width:24px;height:24px;font-size:.68rem;">MS</div>Marc Shave</a>
     <nav class="footer-nav">
-      <a href="about.html">About</a><a href="seekive.html">Seekive</a><a href="video.html">Video</a><a href="ai-creative.html">AI &amp; Creative</a><a href="contact.html">Contact</a>
+      <a href="/about">About</a><a href="/seekive">Seekive</a><a href="/video">Video</a><a href="/skills">Skills</a><a href="/contact">Contact</a>
     </nav>
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div class="footer-right">
       <a href="mailto:hello@marcshave.com" class="footer-email">hello@marcshave.com</a>
       <span class="footer-copy">© 2026</span>
     </div>
@@ -410,7 +222,7 @@ footer { border-top:1px solid var(--border); background:var(--white); }
 <script>
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold:.1 });
+}, { threshold:.08 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
