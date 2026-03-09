@@ -694,26 +694,33 @@ footer { border-top:1px solid var(--border); background:var(--white); }
 
 <script>
 const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.1 });
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
-  <script>
+
+<script>
 (function(){
-  var burger = document.getElementById('burger');
+  var burger  = document.getElementById('burger');
   var overlay = document.getElementById('nav-overlay');
+  var closer  = document.getElementById('nav-close');
   if (!burger || !overlay) return;
+  function openMenu() {
+    overlay.classList.add('open');
+    burger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    overlay.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
   burger.addEventListener('click', function() {
-    var open = overlay.classList.toggle('open');
-    burger.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+    overlay.classList.contains('open') ? closeMenu() : openMenu();
   });
+  if (closer) closer.addEventListener('click', closeMenu);
   overlay.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      overlay.classList.remove('open');
-      burger.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+    a.addEventListener('click', closeMenu);
   });
 })();
 </script>
