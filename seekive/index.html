@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Seekive — Marc Shave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+:root {
+  --white:#ffffff; --off:#f7f8fa; --border:#e2e6ed; --border2:#ccd4e0;
+  --text:#0f1923; --text2:#4a5568; --text3:#8896a8;
+  --blue:#1c5bd6; --blue-dk:#1448b0; --blue-lt:#eef3fd; --blue-mid:#d0dff9;
+}
+body { background:var(--white); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+/* NAV */
+header { position:sticky; top:0; z-index:200; background:var(--white); border-bottom:1px solid var(--border); }
+nav { max-width:1100px; margin:0 auto; height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; }
+.nav-logo { font-family:'DM Sans',sans-serif; font-size:.95rem; font-weight:600; letter-spacing:-.01em; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:9px; }
+.nav-logo-mark { width:28px; height:28px; border-radius:7px; background:var(--blue); display:flex; align-items:center; justify-content:center; color:white; font-size:.75rem; font-weight:700; }
+.nav-links { display:flex; align-items:center; gap:2px; list-style:none; }
+.nav-links a { display:block; padding:7px 14px; border-radius:7px; font-size:.83rem; font-weight:500; color:var(--text2); text-decoration:none; transition:background .18s,color .18s; }
+.nav-links a:hover { background:var(--off); color:var(--text); }
+.nav-links a.active { color:var(--blue); background:var(--blue-lt); }
+.nav-contact { background:var(--blue)!important; color:white!important; font-weight:600!important; }
+.nav-contact:hover { background:var(--blue-dk)!important; color:white!important; }
+
+/* PAGE HEADER */
+.page-header { border-bottom:1px solid var(--border); }
+.page-header-inner { max-width:1100px; margin:0 auto; padding:56px 32px 48px; }
+.breadcrumb { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:.75rem; color:var(--text3); }
+.breadcrumb a { color:var(--text3); text-decoration:none; transition:color .18s; }
+.breadcrumb a:hover { color:var(--blue); }
+.breadcrumb-sep { color:var(--border2); }
+.page-type { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.page-type::before { content:''; display:block; width:20px; height:2px; background:var(--blue); border-radius:2px; }
+.page-title { font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:400; letter-spacing:-.025em; line-height:1.05; color:var(--text); margin-bottom:16px; }
+.page-title em { font-style:italic; color:var(--blue); }
+.page-desc { font-size:1rem; color:var(--text2); max-width:600px; line-height:1.75; }
+.page-award { display:inline-flex; align-items:center; gap:9px; background:#fffbeb; border:1px solid #fcd34d; border-radius:8px; padding:10px 16px; margin-top:24px; font-size:.78rem; font-weight:600; color:#92400e; }
+
+/* META BAR */
+.meta-bar { background:var(--off); border-bottom:1px solid var(--border); }
+.meta-bar-inner { max-width:1100px; margin:0 auto; padding:0 32px; display:flex; gap:0; }
+.meta-item { padding:18px 28px 18px 0; margin-right:28px; border-right:1px solid var(--border); }
+.meta-item:last-child { border-right:none; }
+.meta-label { font-size:.62rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--text3); margin-bottom:3px; }
+.meta-val { font-size:.83rem; font-weight:600; color:var(--text); }
+.meta-val a { color:var(--blue); text-decoration:none; }
+.meta-val a:hover { text-decoration:underline; }
+
+/* SECTIONS */
+.page-section { max-width:1100px; margin:0 auto; padding:60px 32px; border-bottom:1px solid var(--border); }
+.page-section:last-of-type { border-bottom:none; }
+.section-heading { font-family:'Fraunces',serif; font-size:1.5rem; font-weight:400; letter-spacing:-.02em; color:var(--text); margin-bottom:6px; }
+.section-heading em { font-style:italic; color:var(--blue); }
+.section-sub { font-size:.85rem; color:var(--text3); margin-bottom:32px; }
+
+/* MEDIA PLACEHOLDER GRID */
+.media-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.media-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+.media-grid-main { display:grid; grid-template-columns:2fr 1fr; gap:16px; }
+
+.media-slot {
+  background:var(--off);
+  border:2px dashed var(--border2);
+  border-radius:14px;
+  aspect-ratio:16/9;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px; text-align:center; padding:24px;
+  transition:border-color .2s, background .2s;
+  position:relative; overflow:hidden;
+}
+.media-slot:hover { border-color:var(--blue-mid); background:var(--blue-lt); }
+.media-slot.tall { aspect-ratio:9/16; }
+.media-slot.square { aspect-ratio:1; }
+.media-slot-icon { font-size:2rem; opacity:.45; }
+.media-slot-label { font-size:.75rem; font-weight:600; color:var(--text3); }
+.media-slot-hint { font-size:.68rem; color:var(--border2); }
+
+/* For real images - usage: <img> inside .media-slot replaces placeholder */
+.media-slot img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:12px; }
+.media-slot video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:12px; }
+
+/* EMBED SLOT (YouTube/Vimeo) */
+.embed-slot {
+  background:var(--off); border:2px dashed var(--border2); border-radius:14px;
+  aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+  overflow:hidden; position:relative;
+}
+.embed-slot iframe { position:absolute; inset:0; width:100%; height:100%; border:none; border-radius:12px; }
+.embed-placeholder { display:flex; flex-direction:column; align-items:center; gap:10px; }
+.embed-placeholder-icon { font-size:2.5rem; opacity:.3; }
+.embed-placeholder-text { font-size:.75rem; color:var(--text3); font-weight:600; }
+
+/* FEATURE BULLETS */
+.feature-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.feature-item { display:flex; align-items:flex-start; gap:12px; padding:18px; background:var(--off); border:1px solid var(--border); border-radius:10px; }
+.feature-icon { font-size:1.1rem; flex-shrink:0; margin-top:1px; }
+.feature-name { font-size:.85rem; font-weight:600; color:var(--text); margin-bottom:3px; }
+.feature-desc { font-size:.75rem; color:var(--text2); line-height:1.5; }
+
+/* TAG ROW */
+.tag-row { display:flex; flex-wrap:wrap; gap:7px; margin-top:20px; }
+.tag { font-size:.7rem; font-weight:500; padding:5px 12px; border-radius:6px; background:var(--off); border:1px solid var(--border); color:var(--text3); }
+.tag.blue { background:var(--blue-lt); border-color:var(--blue-mid); color:var(--blue); font-weight:600; }
+
+/* FOOTER */
+footer { border-top:1px solid var(--border); background:var(--white); }
+.footer-inner { max-width:1100px; margin:0 auto; padding:36px 32px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.footer-logo { font-size:.9rem; font-weight:600; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+.footer-nav { display:flex; gap:20px; }
+.footer-nav a { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-nav a:hover { color:var(--blue); }
+.footer-email { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-email:hover { color:var(--blue); }
+.footer-copy { font-size:.7rem; color:var(--text3); }
+
+/* REVEAL */
+.reveal { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
+.reveal.d1 { transition-delay:.08s; } .reveal.d2 { transition-delay:.16s; } .reveal.d3 { transition-delay:.24s; }
+.reveal.in { opacity:1; transform:none; }
+
+@media (max-width:900px) {
+  nav { padding:0 20px; } .nav-links li:nth-child(-n+3) { display:none; }
+  .page-header-inner { padding:40px 20px 36px; }
+  .meta-bar-inner { padding:0 20px; flex-wrap:wrap; }
+  .meta-item { padding:14px 20px 14px 0; }
+  .page-section { padding:40px 20px; }
+  .media-grid-2, .media-grid-3, .media-grid-main { grid-template-columns:1fr; }
+  .feature-grid { grid-template-columns:1fr; }
+  .footer-inner { flex-direction:column; align-items:flex-start; padding:28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">MS</div>Marc Shave</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="seekive.html" class="active">Seekive</a></li>
+      <li><a href="video.html">Video</a></li>
+      <li><a href="ai-creative.html">AI &amp; Creative</a></li>
+      <li><a href="contact.html" class="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Seekive</span>
+    </div>
+    <div class="page-type">App Development</div>
+    <h1 class="page-title">Seekive — <em>AI Discovery App</em></h1>
+    <p class="page-desc">A full-stack mobile app that uses AI to help people discover personalised activities and experiences. Built end-to-end — from concept and design through to live deployment on iOS and Android. Every feature, every screen, every line of code.</p>
+    <div class="page-award">🏆 SMEnews UK Enterprise Awards 2026 — Shortlisted</div>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-bar-inner">
+    <div class="meta-item"><div class="meta-label">Platform</div><div class="meta-val">iOS &amp; Android</div></div>
+    <div class="meta-item"><div class="meta-label">Stack</div><div class="meta-val">React Native · Firebase · Gemini AI</div></div>
+    <div class="meta-item"><div class="meta-label">AI Tools</div><div class="meta-val">Gemini API · Image Generation · Prompt Workflows</div></div>
+    <div class="meta-item"><div class="meta-label">Website</div><div class="meta-val"><a href="https://seekive.com" target="_blank">seekive.com ↗</a></div></div>
+    <div class="meta-item"><div class="meta-label">Role</div><div class="meta-val">Solo — Founder, Designer, Developer</div></div>
+  </div>
+</div>
+
+<!-- OVERVIEW VIDEO -->
+<div class="page-section reveal">
+  <h2 class="section-heading">App <em>Overview</em></h2>
+  <p class="section-sub">Video walkthrough or trailer — replace the slot below with a YouTube/Vimeo embed or direct video file</p>
+  <div class="embed-slot" style="margin-bottom:16px;">
+    <!-- TO ADD: replace contents with <iframe src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe> -->
+    <div class="embed-placeholder">
+      <div class="embed-placeholder-icon">▶</div>
+      <div class="embed-placeholder-text">App overview video — paste YouTube or Vimeo embed here</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENSHOTS -->
+<div class="page-section reveal">
+  <h2 class="section-heading">App <em>Screenshots</em></h2>
+  <p class="section-sub">Drop screenshot images into each slot — replace the dashed placeholders with &lt;img&gt; tags</p>
+  <div class="media-grid-main" style="margin-bottom:16px;">
+    <div class="media-slot" style="aspect-ratio:4/3;">
+      <!-- <img src="screenshots/home.png" alt="Seekive Home"> -->
+      <div class="media-slot-icon">📱</div>
+      <div class="media-slot-label">Home / SpinWheel Screen</div>
+      <div class="media-slot-hint">Recommended: 1200 × 900px</div>
+    </div>
+    <div class="media-slot tall">
+      <!-- <img src="screenshots/spinwheel.png" alt="SpinWheel"> -->
+      <div class="media-slot-icon">⊕</div>
+      <div class="media-slot-label">SpinWheel Interface</div>
+      <div class="media-slot-hint">Portrait screenshot</div>
+    </div>
+  </div>
+  <div class="media-grid-3">
+    <div class="media-slot tall">
+      <div class="media-slot-icon">📱</div>
+      <div class="media-slot-label">Discovery Results</div>
+    </div>
+    <div class="media-slot tall">
+      <div class="media-slot-icon">📱</div>
+      <div class="media-slot-label">Activity Detail</div>
+    </div>
+    <div class="media-slot tall">
+      <div class="media-slot-icon">📱</div>
+      <div class="media-slot-label">Profile / Social</div>
+    </div>
+  </div>
+</div>
+
+<!-- AI IMAGE GENERATION -->
+<div class="page-section reveal">
+  <h2 class="section-heading">AI-Generated <em>Imagery</em></h2>
+  <p class="section-sub">Images created using AI generation workflows and prompting — produced to illustrate activities and experiences within the app</p>
+  <div class="media-grid-3" style="margin-bottom:16px;">
+    <div class="media-slot square">
+      <!-- <img src="ai-images/activity-1.jpg" alt="AI Generated Activity"> -->
+      <div class="media-slot-icon">🎨</div>
+      <div class="media-slot-label">AI Generated — Activity Image</div>
+    </div>
+    <div class="media-slot square">
+      <div class="media-slot-icon">🎨</div>
+      <div class="media-slot-label">AI Generated — Activity Image</div>
+    </div>
+    <div class="media-slot square">
+      <div class="media-slot-icon">🎨</div>
+      <div class="media-slot-label">AI Generated — Activity Image</div>
+    </div>
+    <div class="media-slot square">
+      <div class="media-slot-icon">🎨</div>
+      <div class="media-slot-label">AI Generated — Activity Image</div>
+    </div>
+    <div class="media-slot square">
+      <div class="media-slot-icon">🎨</div>
+      <div class="media-slot-label">AI Generated — Activity Image</div>
+    </div>
+    <div class="media-slot square">
+      <div class="media-slot-icon">🎨</div>
+      <div class="media-slot-label">AI Generated — Activity Image</div>
+    </div>
+  </div>
+  <p style="font-size:.78rem;color:var(--text3);line-height:1.7;">Images were produced using AI image generation tools, guided by custom prompts crafted to visually represent specific activities, moods, and environments within the Seekive app. AI was also used throughout the project to research, plan, draft content, and generate ideas across development and design.</p>
+</div>
+
+<!-- FEATURES -->
+<div class="page-section reveal">
+  <h2 class="section-heading">Features &amp; <em>Capabilities</em></h2>
+  <p class="section-sub">What Seekive does under the hood</p>
+  <div class="feature-grid">
+    <div class="feature-item">
+      <div class="feature-icon">⊕</div>
+      <div><div class="feature-name">SpinWheel Interface</div><div class="feature-desc">Signature compass-style spin wheel — a custom-built interaction that makes activity discovery feel playful and intuitive.</div></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🤖</div>
+      <div><div class="feature-name">Gemini AI Recommendations</div><div class="feature-desc">Real-time activity suggestions powered by Google Gemini — personalised to mood, time, budget, weather, and location.</div></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🎨</div>
+      <div><div class="feature-name">AI-Generated Imagery</div><div class="feature-desc">Custom images created through AI generation workflows, illustrating activities and experiences throughout the app.</div></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">👥</div>
+      <div><div class="feature-name">Social Layer</div><div class="feature-desc">Friends system, messaging, community pages and shared discovery — turning solo exploration into a social experience.</div></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🏆</div>
+      <div><div class="feature-name">Achievements & Gamification</div><div class="feature-desc">An achievement system that rewards users for discovering new experiences and completing moments.</div></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">📓</div>
+      <div><div class="feature-name">Journal & Planning</div><div class="feature-desc">Users can log completed moments, save discoveries, and plan future activities in a personal journal.</div></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🌤</div>
+      <div><div class="feature-name">Weather & Location Aware</div><div class="feature-desc">Suggestions adapt in real time to the user's current location and live weather conditions.</div></div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💰</div>
+      <div><div class="feature-name">Freemium Monetisation</div><div class="feature-desc">AdMob integration for free-tier users and a subscription model for premium access — a complete revenue architecture.</div></div>
+    </div>
+  </div>
+  <div class="tag-row">
+    <span class="tag blue">React Native</span>
+    <span class="tag blue">Firebase / Firestore</span>
+    <span class="tag blue">Google Gemini API</span>
+    <span class="tag blue">AI Image Generation</span>
+    <span class="tag">iOS &amp; Android</span>
+    <span class="tag">AdMob</span>
+    <span class="tag">Subscriptions</span>
+    <span class="tag">Real-time DB</span>
+    <span class="tag">Geolocation</span>
+    <span class="tag">Auth</span>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><div class="nav-logo-mark" style="width:24px;height:24px;font-size:.68rem;">MS</div>Marc Shave</a>
+    <nav class="footer-nav">
+      <a href="about.html">About</a><a href="seekive.html">Seekive</a><a href="video.html">Video</a><a href="ai-creative.html">AI &amp; Creative</a><a href="contact.html">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="mailto:hello@marcshave.com" class="footer-email">hello@marcshave.com</a>
+      <span class="footer-copy">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
