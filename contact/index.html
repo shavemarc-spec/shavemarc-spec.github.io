@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — Marc Shave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+:root {
+  --white:#ffffff; --off:#f7f8fa; --border:#e2e6ed; --border2:#ccd4e0;
+  --text:#0f1923; --text2:#4a5568; --text3:#8896a8;
+  --blue:#1c5bd6; --blue-dk:#1448b0; --blue-lt:#eef3fd; --blue-mid:#d0dff9;
+}
+body { background:var(--white); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+/* ── NAV ── */
+header { position:sticky; top:0; z-index:200; background:var(--white); border-bottom:1px solid var(--border); }
+nav { max-width:1100px; margin:0 auto; height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 32px; }
+.nav-logo { font-size:.95rem; font-weight:600; letter-spacing:-.01em; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:9px; }
+.nav-logo-mark { width:28px; height:28px; border-radius:7px; background:var(--blue); display:flex; align-items:center; justify-content:center; color:white; font-size:.75rem; font-weight:700; }
+.nav-links { display:flex; align-items:center; gap:2px; list-style:none; }
+.nav-links a { display:block; padding:7px 14px; border-radius:7px; font-size:.83rem; font-weight:500; color:var(--text2); text-decoration:none; transition:background .18s,color .18s; }
+.nav-links a:hover { background:var(--off); color:var(--text); }
+.nav-links a.active { color:var(--blue); background:var(--blue-lt); }
+.nav-contact { background:var(--blue)!important; color:white!important; font-weight:600!important; }
+.nav-contact:hover { background:var(--blue-dk)!important; color:white!important; }
+
+/* ── PAGE HEADER ── */
+.page-header { border-bottom:1px solid var(--border); }
+.page-header-inner { max-width:1100px; margin:0 auto; padding:56px 32px 48px; }
+.breadcrumb { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:.75rem; color:var(--text3); }
+.breadcrumb a { color:var(--text3); text-decoration:none; transition:color .18s; }
+.breadcrumb a:hover { color:var(--blue); }
+.breadcrumb-sep { color:var(--border2); }
+.page-type { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.page-type::before { content:''; display:block; width:20px; height:2px; background:var(--blue); border-radius:2px; }
+.page-title { font-family:'Fraunces',serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:400; letter-spacing:-.025em; line-height:1.05; color:var(--text); margin-bottom:16px; }
+.page-title em { font-style:italic; color:var(--blue); }
+.page-desc { font-size:1rem; color:var(--text2); max-width:540px; line-height:1.75; }
+
+/* ── MAIN LAYOUT ── */
+.contact-layout { max-width:1100px; margin:0 auto; padding:60px 32px; display:grid; grid-template-columns:1fr 380px; gap:64px; align-items:start; }
+
+/* ── FORM ── */
+.form-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:400; letter-spacing:-.02em; color:var(--text); margin-bottom:24px; }
+.form-title em { font-style:italic; color:var(--blue); }
+
+.form-row { margin-bottom:18px; }
+.form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
+label { display:block; font-size:.72rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--text3); margin-bottom:7px; }
+input, textarea, select {
+  width:100%; background:var(--off); border:1px solid var(--border);
+  border-radius:9px; padding:13px 16px; font-family:'DM Sans',sans-serif;
+  font-size:.88rem; color:var(--text); outline:none;
+  transition:border-color .18s, background .18s, box-shadow .18s;
+  -webkit-appearance:none; appearance:none;
+}
+input::placeholder, textarea::placeholder { color:var(--text3); }
+input:focus, textarea:focus, select:focus {
+  border-color:var(--blue); background:var(--white);
+  box-shadow:0 0 0 3px rgba(28,91,214,.1);
+}
+textarea { resize:vertical; min-height:140px; line-height:1.6; }
+
+.form-submit {
+  width:100%; padding:15px 24px;
+  background:var(--blue); color:white;
+  border:none; border-radius:9px;
+  font-family:'DM Sans',sans-serif; font-size:.9rem; font-weight:600;
+  cursor:pointer; transition:background .18s, transform .15s;
+  letter-spacing:-.01em;
+}
+.form-submit:hover { background:var(--blue-dk); transform:translateY(-1px); }
+.form-submit:active { transform:translateY(0); }
+
+.form-note { font-size:.72rem; color:var(--text3); text-align:center; margin-top:12px; line-height:1.5; }
+
+/* ── SUCCESS STATE ── */
+.form-success {
+  display:none; text-align:center; padding:40px 24px;
+  background:var(--blue-lt); border:1px solid var(--blue-mid); border-radius:12px;
+}
+.form-success-icon { font-size:2.5rem; margin-bottom:12px; }
+.form-success-title { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:6px; }
+.form-success-msg { font-size:.85rem; color:var(--text2); }
+
+/* ── SIDEBAR ── */
+.contact-sidebar { display:flex; flex-direction:column; gap:14px; }
+
+.sidebar-section-title { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); margin-bottom:12px; }
+
+.contact-link {
+  display:flex; align-items:center; gap:14px;
+  background:var(--off); border:1px solid var(--border); border-radius:12px;
+  padding:18px 20px; text-decoration:none; color:inherit;
+  transition:border-color .22s, transform .2s, box-shadow .2s;
+}
+.contact-link:hover { border-color:var(--blue); transform:translateX(3px); box-shadow:0 2px 12px rgba(28,91,214,.08); }
+.contact-link-icon { width:40px; height:40px; border-radius:10px; background:var(--white); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.contact-link-label { font-size:.65rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text3); margin-bottom:2px; }
+.contact-link-val { font-size:.85rem; font-weight:600; color:var(--text); }
+.contact-link-arrow { margin-left:auto; color:var(--text3); font-size:.8rem; transition:color .18s; flex-shrink:0; }
+.contact-link:hover .contact-link-arrow { color:var(--blue); }
+
+/* AVAILABILITY CARD */
+.availability-card { background:var(--blue-lt); border:1px solid var(--blue-mid); border-radius:12px; padding:22px 20px; }
+.avail-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:#22c55e; margin-right:6px; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.4;} }
+.avail-status { font-size:.78rem; font-weight:700; color:var(--text); margin-bottom:6px; display:flex; align-items:center; }
+.avail-desc { font-size:.76rem; color:var(--text2); line-height:1.6; }
+
+/* SEEKIVE CARD */
+.seekive-card { background:var(--off); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.seekive-card-top { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.seekive-card-icon { width:34px; height:34px; border-radius:8px; background:var(--blue); display:flex; align-items:center; justify-content:center; font-size:.8rem; color:white; font-weight:700; }
+.seekive-card-name { font-size:.88rem; font-weight:700; color:var(--text); }
+.seekive-card-sub { font-size:.75rem; color:var(--text3); margin-bottom:14px; line-height:1.5; }
+.seekive-card-link { display:inline-flex; align-items:center; gap:6px; font-size:.76rem; font-weight:600; color:var(--blue); text-decoration:none; transition:gap .18s; }
+.seekive-card-link:hover { gap:10px; }
+
+/* ── FOOTER ── */
+footer { border-top:1px solid var(--border); background:var(--white); }
+.footer-inner { max-width:1100px; margin:0 auto; padding:36px 32px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.footer-logo { font-size:.9rem; font-weight:600; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+.footer-nav { display:flex; gap:20px; }
+.footer-nav a { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-nav a:hover { color:var(--blue); }
+.footer-right { display:flex; align-items:center; gap:16px; }
+.footer-email { font-size:.78rem; color:var(--text3); text-decoration:none; transition:color .18s; }
+.footer-email:hover { color:var(--blue); }
+.footer-copy { font-size:.7rem; color:var(--text3); }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
+.reveal.d1 { transition-delay:.08s; } .reveal.d2 { transition-delay:.16s; }
+.reveal.in { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:960px) {
+  nav { padding:0 20px; }
+  .nav-links li:nth-child(n+3):not(:last-child) { display:none; }
+  .page-header-inner { padding:40px 20px 36px; }
+  .contact-layout { grid-template-columns:1fr; gap:40px; padding:40px 20px; }
+  .form-row-2 { grid-template-columns:1fr; }
+  .footer-inner { flex-direction:column; align-items:flex-start; padding:28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">MS</div>Marc Shave</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="seekive.html">Seekive</a></li>
+      <li><a href="video.html">Video</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="contact.html" class="active nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Contact</span>
+    </div>
+    <div class="page-type">Get In Touch</div>
+    <h1 class="page-title">Let's <em>Talk</em></h1>
+    <p class="page-desc">Whether you want to discuss a project, talk about Seekive, or just get in touch — send a message using the form or reach out directly through any of the links on this page.</p>
+  </div>
+</div>
+
+<div class="contact-layout">
+
+  <!-- FORM -->
+  <div class="reveal">
+    <h2 class="form-title">Send a <em>Message</em></h2>
+
+    <div id="contact-form">
+      <div class="form-row-2">
+        <div>
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="Your first name">
+        </div>
+        <div>
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com">
+      </div>
+      <div class="form-row">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="What's this about?">
+      </div>
+      <div class="form-row">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell me what you're working on, what you're looking for, or just say hello…"></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
+      <p class="form-note">I'll get back to you as soon as I can.</p>
+    </div>
+
+    <div class="form-success" id="form-success">
+      <div class="form-success-icon">✓</div>
+      <div class="form-success-title">Message sent!</div>
+      <div class="form-success-msg">Thanks for reaching out — I'll be in touch soon.</div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="contact-sidebar reveal d1">
+
+    <div class="availability-card">
+      <div class="avail-status"><span class="avail-dot"></span>Available for new opportunities</div>
+      <div class="avail-desc">Open to freelance work, collaborations, and full-time roles across app development, video, AI creative, and digital marketing.</div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-title">Direct Contact</div>
+      <a href="mailto:hello@marcshave.com" class="contact-link">
+        <div class="contact-link-icon">✉️</div>
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-val">hello@marcshave.com</div>
+        </div>
+        <div class="contact-link-arrow">↗</div>
+      </a>
+    </div>
+
+    <div>
+      <div class="sidebar-section-title">Find Me Online</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <a href="https://www.linkedin.com/in/marc-shave-268bb21b5/" target="_blank" class="contact-link">
+          <div class="contact-link-icon">💼</div>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-val">Marc Shave</div>
+          </div>
+          <div class="contact-link-arrow">↗</div>
+        </a>
+        <a href="https://github.com/marcshave" target="_blank" class="contact-link">
+          <div class="contact-link-icon">⌥</div>
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-val">github.com/marcshave</div>
+          </div>
+          <div class="contact-link-arrow">↗</div>
+        </a>
+        <a href="https://seekive.com" target="_blank" class="contact-link">
+          <div class="contact-link-icon">⊕</div>
+          <div>
+            <div class="contact-link-label">Live Product</div>
+            <div class="contact-link-val">seekive.com</div>
+          </div>
+          <div class="contact-link-arrow">↗</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="seekive-card">
+      <div class="seekive-card-top">
+        <div class="seekive-card-icon">S</div>
+        <div class="seekive-card-name">Seekive</div>
+      </div>
+      <div class="seekive-card-sub">My flagship AI-powered discovery app — live on iOS &amp; Android. Shortlisted for the SMEnews UK Enterprise Awards 2026.</div>
+      <a href="seekive.html" class="seekive-card-link">View the project →</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><div class="nav-logo-mark" style="width:24px;height:24px;font-size:.68rem;">MS</div>Marc Shave</a>
+    <nav class="footer-nav">
+      <a href="about.html">About</a>
+      <a href="seekive.html">Seekive</a>
+      <a href="video.html">Video</a>
+      <a href="skills.html">Skills</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-right">
+      <a href="mailto:hello@marcshave.com" class="footer-email">hello@marcshave.com</a>
+      <span class="footer-copy">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+function handleSubmit() {
+  const fname = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if (!fname || !email || !message) {
+    alert('Please fill in your name, email, and message before sending.');
+    return;
+  }
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+  // To wire up: replace this with a fetch() to Formspree, Netlify Forms, or your preferred handler
+  // e.g. fetch('https://formspree.io/f/YOUR_ID', { method:'POST', body: new FormData(...) })
+}
+</script>
+</body>
+</html>
